@@ -65,14 +65,23 @@ public class FirstPageGui extends JFrame{
 				"10 Cloverfield Lane","Kung-Fu Panda 2","Avengers: Age of Ultron","Guardians of the Galaxy Vol2",
 				"Fast & Furious 6","Doctor Strange"}));
 		
-	      cmbMovies.addActionListener(new java.awt.event.ActionListener() {
+		cmbMovies.addItemListener(new java.awt.event.ItemListener(){
+			public void itemStateChanged(java.awt.event.ItemEvent evt){
+				cmbMoviesItemStateChanged(evt);
+			}
+		});
+		
+	    cmbMovies.addActionListener(new java.awt.event.ActionListener() {
 	            public void actionPerformed(java.awt.event.ActionEvent evt) {
 	                cmbmoviesActionPerformed(evt);
 	            }
 	        });
 	      
 	      
-		
+		lblImgPreview.setBounds(475,90,300,300);
+		lblImgPreview.setVisible(true);
+		add(lblImgPreview);
+	      
 		getContentPane().add(cmbMovies);
 		cmbMovies.setBounds(100,90,230,25);
 		
@@ -116,9 +125,17 @@ public class FirstPageGui extends JFrame{
 	private void cmbmoviesActionPerformed(java.awt.event.ActionEvent evt) {
 	       if((String)cmbMovies.getSelectedItem() == "Doctor Strange")
 	       {
-	           lblImgPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("src/Doctor_Strange.jpg"))); 
+	           lblImgPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("Doctor_Strange.jpg"))); 
+	           
+	       } else if((String)cmbMovies.getSelectedItem() == "10 Cloverfield Lane"){
+	    	   
+	    	   lblImgPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("10_Cloverfield_Lane.jpg")));
 	       }
 	
+	}
+	
+	private void cmbMoviesItemStateChanged(java.awt.event.ItemEvent evt){
+		
 	}
 
 }
