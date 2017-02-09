@@ -45,17 +45,17 @@ public class FirstPageGui extends JFrame{
 		// ComboBox Init's
 		cmbMovies = new JComboBox<String>();
 		
-		// Seperator Init's
+		// Separator Init's
 		first_Seperator = new JSeparator();
 		
 		// Title Of The Program
 		lblCinemaTitle.setFont(new Font("Serif",Font.ITALIC+Font.BOLD,20));
 		lblCinemaTitle.setText("University Cineplex");
 		getContentPane().add(lblCinemaTitle);
-		lblCinemaTitle.setBounds(200,0,240,30);
+		lblCinemaTitle.setBounds(320,0,240,30);
 		
 		// Movie Selection
-		lblMovieSelection.setFont(new Font("Times New Roman",0,12));
+		lblMovieSelection.setFont(new Font("Times New Roman",0,14));
 		lblMovieSelection.setText("Select Movie:");
 		getContentPane().add(lblMovieSelection);
 		lblMovieSelection.setBounds(10,90,80,20);
@@ -76,8 +76,8 @@ public class FirstPageGui extends JFrame{
 		getContentPane().add(cmbMovies);
 		cmbMovies.setBounds(100,90,230,25);
 		
-		// Heading With A Seperator Between Movie And Theatre Details
-		lblTheatre_Time.setFont(new Font("Times New Roman",Font.ITALIC,11));
+		// Heading With A Separator Between Movie And Theatre Details
+		lblTheatre_Time.setFont(new Font("Times New Roman",Font.ITALIC,13));
 		lblTheatre_Time.setForeground(new Color(0, 102, 255));
 		lblTheatre_Time.setText("Theatre No & Time");
 		getContentPane().add(lblTheatre_Time);
@@ -87,24 +87,24 @@ public class FirstPageGui extends JFrame{
 		first_Seperator.setBounds(120,140,210,2);
 		
 
-		lblTheatreNo.setFont(new Font("Times New Roman",0,12));
+		lblTheatreNo.setFont(new Font("Times New Roman",0,14));
 		lblTheatreNo.setText("Theatre No:"); 
 		getContentPane().add(lblTheatreNo);
 		lblTheatreNo.setBounds(10,160,80,15);
 		
 		/*/
 		*
-		* Initalise ActualThreatreNo Here!
+		* Initialise ActualThreatreNo Here!
 		*
 		/*/
 
-		lblTimeOfShow.setFont(new Font("Times New Roman",0,12));
+		lblTimeOfShow.setFont(new Font("Times New Roman",0,14));
 		lblTimeOfShow.setText("Time Of Show:");
 		getContentPane().add(lblTimeOfShow);
 		lblTimeOfShow.setBounds(10,200,90,15);
 		
 		
-		lblActualTimeOfShow.setFont(new Font("Times New Roman",1,12));
+		lblActualTimeOfShow.setFont(new Font("Times New Roman",1,14));
 		lblActualTimeOfShow.setText("9:00 PM");
 		getContentPane().add(lblActualTimeOfShow);
 		lblActualTimeOfShow.setBounds(110,198,100,20);
@@ -116,7 +116,7 @@ public class FirstPageGui extends JFrame{
 	private void cmbmoviesActionPerformed(java.awt.event.ActionEvent evt) {
 	       if((String)cmbMovies.getSelectedItem() == "Doctor Strange")
 	       {
-	           lblImgPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doctor_Strangejpg"))); 
+	           lblImgPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("src/Doctor_Strange.jpg"))); 
 	       }
 	
 	}
