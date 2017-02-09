@@ -80,7 +80,7 @@ public class FirstPageGui extends JFrame{
 	        });
 	      
 	      
-		lblImgPreview.setBounds(350,90,250,250);
+		lblImgPreview.setBounds(335,90,250,250);
 		lblImgPreview.setVisible(true);
 		add(lblImgPreview);
 	      
