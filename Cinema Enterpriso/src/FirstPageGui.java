@@ -11,7 +11,12 @@ import javax.swing.*;
  */
 
 public class FirstPageGui extends JFrame{
-
+	
+	// Declaring Integers
+	private int comboIndex1;
+	private int comboIndex2;
+	private int comboIndex3;
+	
 	// Declaring JLabel 
 	private JLabel lblCinemaTitle;
 	private JLabel lblMovieSelection;
@@ -22,6 +27,10 @@ public class FirstPageGui extends JFrame{
 	private JLabel lblActualTimeOfShow;
 	private JLabel lblImgPreview;
 	private JLabel lblTicketHeading;
+	private JLabel lblAgeRating;
+	private JLabel lblActualAgeRating;
+	
+	
 	
 	// Declaring JComboBox's 
 	private JComboBox<String> cmbMovies;
@@ -44,6 +53,9 @@ public class FirstPageGui extends JFrame{
 		lblActualTimeOfShow = new JLabel();
 		lblImgPreview = new JLabel();
 		lblTicketHeading = new JLabel();
+		lblAgeRating = new JLabel();
+		lblActualAgeRating = new JLabel();
+		
 
 		// ComboBox Init's
 		cmbMovies = new JComboBox<String>();
@@ -70,23 +82,44 @@ public class FirstPageGui extends JFrame{
 				"10 Cloverfield Lane","Disney: Moana","Rogue One: Star Wars","Kung Fu Panda 3","Power Rangers MMPR",
 				"Avengers: Age of Ultron","Batman VS Superman",}));
 		
-		
+		// Listening For Any Events Coming From The Movie Combo Box
 	    cmbMovies.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent evt) {
 	                cmbMoviesActionPerformed(evt);
 	                cmbMoviesTheatreActionPerformed(evt);
 	                cmbMoviesTimeActionPerformed(evt);
+	                cmbMovieAgeRatingActionPerformed(evt);
 	            }
 	        });
 	      
-	      
-		lblImgPreview.setBounds(335,90,250,250);
+	    // Setting Up The Image Preview For When The Program First Runs
+		lblImgPreview.setBounds(350,60,250,250);
 		lblImgPreview.setVisible(true);
+		lblImgPreview.setFont(new Font("Times New Roman", Font.ITALIC + Font.BOLD, 20));
+		lblImgPreview.setText("SELECT A MOVIE");
+		lblImgPreview.setHorizontalAlignment(SwingConstants.CENTER);
+		lblImgPreview.setVerticalAlignment(SwingConstants.CENTER);
 		add(lblImgPreview);
+		
+		lblImgPreview.setBorder(BorderFactory.createEtchedBorder());
 	      
 		getContentPane().add(cmbMovies);
 		cmbMovies.setBounds(100,90,230,25);
 		
+		// Age Rating Label & The Value It Will Display Depending On The Movie Selected
+		lblAgeRating.setFont(new Font ("Times New Roman", Font.BOLD, 10));
+		lblAgeRating.setForeground(new Color(0, 102, 255));
+		lblAgeRating.setText("Age Rating: ");
+		getContentPane().add(lblAgeRating);
+		lblAgeRating.setBounds(415,315,110,15);
+		
+		lblActualAgeRating.setFont(new Font ("Times New Roman", Font.BOLD, 12));
+		getContentPane().add(lblActualAgeRating);
+		lblActualAgeRating.setBounds(485,315,110,15);
+		
+		
+		
+		// Setting Up Theatre Number Labels
 		lblActualTheatreNo.setFont(new Font("Times New Roman", Font.ITALIC,12));
 		lblActualTheatreNo.setForeground(new Color(0, 102, 255));
 		getContentPane().add(lblActualTheatreNo);
@@ -107,12 +140,6 @@ public class FirstPageGui extends JFrame{
 		lblTheatreNo.setText("Theatre No:"); 
 		getContentPane().add(lblTheatreNo);
 		lblTheatreNo.setBounds(10,160,80,15);
-		
-		/*/
-		*
-		* Initialise ActualThreatreNo Here!
-		*
-		/*/
 
 		lblTimeOfShow.setFont(new Font("Times New Roman",0,12));
 		lblTimeOfShow.setText("Time Of Show:");
@@ -135,59 +162,65 @@ public class FirstPageGui extends JFrame{
 		getContentPane().add(second_Separator);
 		second_Separator.setBounds(110,250,220,10);
 		
+
 			
 		
 		
 	}
 	
 	private void cmbMoviesActionPerformed(ActionEvent evt) {
-	       if((String)cmbMovies.getSelectedItem() == "Doctor Strange"){
-	           lblImgPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("Doctor_Strange.jpg"))); 
-	       } else if((String)cmbMovies.getSelectedItem() == "10 Cloverfield Lane"){
-	    	   lblImgPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("10_Cloverfield_Lane.jpg")));
-	       } else if((String)cmbMovies.getSelectedItem() == "Power Rangers MMPR"){
-	    	   lblImgPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("Power-Rangers-Movie-2017.jpg")));
-	       } else if((String)cmbMovies.getSelectedItem() == "Kung Fu Panda 3"){
-	    	   lblImgPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("kung-fu-panda-3.jpg")));
-	       } else if((String)cmbMovies.getSelectedItem() == "Avengers: Age of Ultron"){
-	    	   lblImgPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("Avengers.jpg")));
-	       } else if((String)cmbMovies.getSelectedItem() == "Guardians of the Galaxy Vol2"){
-	    	   lblImgPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("GuardiansOfGalaxy.jpg")));
-	       } else if((String)cmbMovies.getSelectedItem() == "Batman VS Superman"){
-	    	   lblImgPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("BatmanVsSuperman.jpg")));
-	       } else if((String)cmbMovies.getSelectedItem() == "Disney: Moana"){
-	    	   lblImgPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("Moana.jpg")));
-	       } else if((String)cmbMovies.getSelectedItem() == "Rogue One: Star Wars"){
-	    	   lblImgPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("rogueone.jpg")));
-	       } else if((String)cmbMovies.getSelectedItem() == "T2 Trainspotting"){
-	    	   lblImgPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("T2Trainspotting.jpg")));
+			lblImgPreview.setText("");
+			comboIndex1 = cmbMovies.getSelectedIndex();
+			
+			if (comboIndex1 == 1){
+	           lblImgPreview.setIcon(new ImageIcon(getClass().getResource("Doctor_Strange.jpg"))); 
+	       } else if (comboIndex1 == 2){
+	    	   lblImgPreview.setIcon(new ImageIcon(getClass().getResource("T2Trainspotting.jpg")));
+	       } else if (comboIndex1 == 3){
+	    	   lblImgPreview.setIcon(new ImageIcon(getClass().getResource("GuardiansOfGalaxy.jpg")));
+	       } else if (comboIndex1 == 4){
+	    	   lblImgPreview.setIcon(new ImageIcon(getClass().getResource("10_Cloverfield_Lane.jpg")));
+	       } else if (comboIndex1 == 5){
+	    	   lblImgPreview.setIcon(new ImageIcon(getClass().getResource("Moana.jpg")));
+	       } else if (comboIndex1 == 6){
+	    	   lblImgPreview.setIcon(new ImageIcon(getClass().getResource("rogueone.jpg")));
+	       } else if (comboIndex1 == 7){
+	    	   lblImgPreview.setIcon(new ImageIcon(getClass().getResource("kung-fu-panda-3.jpg")));
+	       } else if (comboIndex1 == 8){
+	    	   lblImgPreview.setIcon(new ImageIcon(getClass().getResource("Power-Rangers-Movie-2017.jpg")));
+	       } else if (comboIndex1 == 9){
+	    	   lblImgPreview.setIcon(new ImageIcon(getClass().getResource("Avengers.jpg")));
+	       } else if (comboIndex1 == 10){
+	    	   lblImgPreview.setIcon(new ImageIcon(getClass().getResource("BatmanVsSuperman.jpg")));
 	       } else{
-	    	   lblImgPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("")));
+	    	   lblImgPreview.setIcon(new ImageIcon(getClass().getResource("")));
+	    	   lblImgPreview.setText("SELECT A MOVIE");
 	       }
 	
 	}
 	
 	private void cmbMoviesTheatreActionPerformed(ActionEvent evt){
-		if((String)cmbMovies.getSelectedItem() == "Doctor Strange"){
+		comboIndex2 = cmbMovies.getSelectedIndex();
+		
+		if (comboIndex2 == 1){
 			lblActualTheatreNo.setText("CW-01-01");
-		}else if((String)cmbMovies.getSelectedItem() == "10 Cloverfield Lane"){
+		}else if (comboIndex2 == 2){
 			lblActualTheatreNo.setText("CW-01-02");
-			
-		}else if((String)cmbMovies.getSelectedItem() == "Power Rangers MMPR"){
+		}else if (comboIndex2 == 3){
 			lblActualTheatreNo.setText("CW-01-03");
-		}else if((String)cmbMovies.getSelectedItem() == "Kung Fu Panda 3"){
+		}else if (comboIndex2 == 4){
 			lblActualTheatreNo.setText("CW-01-04");
-		}else if((String)cmbMovies.getSelectedItem() == "Avengers: Age of Ultron"){
+		}else if (comboIndex2 == 5){
 			lblActualTheatreNo.setText("CW-01-05");
-		}else if((String)cmbMovies.getSelectedItem() == "Guardians of the Galaxy Vol2"){
+		}else if (comboIndex2 == 6){
 			lblActualTheatreNo.setText("CW-02-01");
-		}else if((String)cmbMovies.getSelectedItem() == "Batman VS Superman"){
+		}else if (comboIndex2 == 7){
 			lblActualTheatreNo.setText("CW-02-02");	
-		}else if((String)cmbMovies.getSelectedItem() == "Disney: Moana"){
+		}else if (comboIndex2 == 8){
 			lblActualTheatreNo.setText("CW-02-03");	
-		}else if((String)cmbMovies.getSelectedItem() == "Rogue One: Star Wars"){
+		}else if (comboIndex2 == 9){
 			lblActualTheatreNo.setText("CW-02-04");	
-		}else if((String)cmbMovies.getSelectedItem() == "T2 Trainspotting"){
+		}else if (comboIndex2 == 10){
 			lblActualTheatreNo.setText("CW-02-05");
 		}else{
 			lblActualTheatreNo.setText("");
@@ -202,6 +235,68 @@ public class FirstPageGui extends JFrame{
 		}
 	}
 	
+	private void cmbMovieAgeRatingActionPerformed(ActionEvent evt){
+		comboIndex3 = cmbMovies.getSelectedIndex();
+		if (comboIndex3 == 1){
+			lblActualAgeRating.setForeground(Color.ORANGE);
+			lblActualAgeRating.setText("12A");
+		}else if (comboIndex3 == 2){
+			lblActualAgeRating.setForeground(Color.RED);
+			lblActualAgeRating.setText("18");
+		}else if (comboIndex3 == 3){
+			lblActualAgeRating.setForeground(Color.GREEN);
+			lblActualAgeRating.setText("PG");
+		}else if (comboIndex3 == 4){
+			lblActualAgeRating.setForeground(Color.RED);
+			lblActualAgeRating.setText("15");
+		}else if (comboIndex3 == 5){
+			lblActualAgeRating.setForeground(Color.GREEN);
+			lblActualAgeRating.setText("PG");
+		}else if (comboIndex3 == 6){
+			lblActualAgeRating.setForeground(Color.RED);
+			lblActualAgeRating.setText("15");
+		}else if (comboIndex3 == 7){
+			lblActualAgeRating.setForeground(Color.GREEN);
+			lblActualAgeRating.setText("PG");
+			
+		}else if (comboIndex3 == 8){
+			lblActualAgeRating.setForeground(Color.ORANGE);
+			lblActualAgeRating.setText("12A");
+		}else if (comboIndex3 == 9){
+			lblActualAgeRating.setForeground(Color.ORANGE);
+			lblActualAgeRating.setText("12A");
+		}else if (comboIndex3 == 10){
+			lblActualAgeRating.setForeground(Color.ORANGE);
+			lblActualAgeRating.setText("12A");
+		}else{
+				lblActualAgeRating.setText("");
+		}
+		
+		
+//		if((String)cmbMovies.getSelectedItem() == "Doctor Strange"){
+//			lblActualTheatreNo.setText("CW-01-01");
+//		}else if((String)cmbMovies.getSelectedItem() == "10 Cloverfield Lane"){
+//			lblActualTheatreNo.setText("CW-01-02");
+//		}else if((String)cmbMovies.getSelectedItem() == "Power Rangers MMPR"){
+//			lblActualTheatreNo.setText("CW-01-03");
+//		}else if((String)cmbMovies.getSelectedItem() == "Kung Fu Panda 3"){
+//			lblActualTheatreNo.setText("CW-01-04");
+//		}else if((String)cmbMovies.getSelectedItem() == "Avengers: Age of Ultron"){
+//			lblActualTheatreNo.setText("CW-01-05");
+//		}else if((String)cmbMovies.getSelectedItem("CW-02-01");
+//		}else if((String)cmbMovies.getSelectedItem() == "Batman VS Superman"){
+//			lblActualTheatreNo.setText("CW-02-02");	
+//		}else if((String)cmbMovies.getSelectedItem() == "Disney: Moana"){
+//			lblActualTheatreNo.setText("CW-02-03");	
+//		}else if((String)cmbMovies.getSelectedItem() == "Rogue One: Star Wars"){
+//			lblActualTheatreNo.setText("CW-02-04");	
+//		}else if((String)cmbMovies.getSelectedItem() == "T2 Trainspotting"){
+//			lblActualTheatreNo.setText("CW-02-05");
+//		}else{
+//			lblActualTheatreNo.setText("");
+//		}
+	}
+}	
 	
 
-}
+
