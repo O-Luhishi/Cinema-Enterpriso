@@ -16,10 +16,13 @@ public class FirstPageGui extends JFrame{
 	private int comboIndex1;
 
 	// Decalring Strings
-	private String roomCapacity25 = "25";
-	private String roomCapacity75 = "75";
-	private String roomCapacity150 = "150";
-	private String roomCapacity250 = "250";
+	private String strRoomCapacity25 = "25";
+	private String strRoomCapacity75 = "75";
+	private String strRoomCapacity150 = "150";
+	private String strRoomCapacity250 = "250";
+	private String strTicketPriceSeven = "£7.00";
+	private String strTicketPriceFive = "£5.00";
+	private String strTicketPriceThree = "£3.00";
 	
 	// Declaring JLabel 
 	private JLabel lblCinemaTitle;
@@ -33,10 +36,14 @@ public class FirstPageGui extends JFrame{
 	private JLabel lblTicketHeading;
 	private JLabel lblAgeRating;
 	private JLabel lblActualAgeRating;
-	private JLabel lblAdultTicket;
-	private JLabel lblChildTicket;
 	private JLabel lblNoSeats;
 	private JLabel lblActualNoSeats;
+	private JLabel lblAdultTicket;
+	private JLabel lblChildTicket;
+	private JLabel lblActualAdultTicket;
+	private JLabel lblActualChildTicket;
+	private JLabel lblAdultQty;
+	private JLabel lblChildQty;
 	
 	
 	// Declaring JComboBox's 
@@ -58,16 +65,21 @@ public class FirstPageGui extends JFrame{
 		lblMovieSelection = new JLabel();
 		lblTheatre_Time = new JLabel();
 		lblTheatreNo = new JLabel();
+		lblActualTheatreNo = new JLabel();
 		lblTimeOfShow = new JLabel();
 		lblActualTimeOfShow = new JLabel();
 		lblImgPreview = new JLabel();
 		lblTicketHeading = new JLabel();
+		lblAgeRating = new JLabel();
 		lblActualAgeRating = new JLabel();
 		lblAdultTicket = new JLabel();
 		lblChildTicket = new JLabel();
-		lblActualTheatreNo = new JLabel();
 		lblNoSeats = new JLabel();
 		lblActualNoSeats = new JLabel();
+		lblActualAdultTicket = new JLabel();
+		lblActualChildTicket = new JLabel();
+		lblAdultQty = new JLabel();
+		lblChildQty = new JLabel();
 		
 
 		// ComboBox Init's
@@ -110,6 +122,7 @@ public class FirstPageGui extends JFrame{
 	                lblMoviesTimeActionPerformed(evt);
 	                lblMovieAgeRatingActionPerformed(evt);
 	                lblNoSeatsActionPerformed(evt);
+	                lblTicketPriceActionPerformed(evt);
 	            }
 	        });
 	      
@@ -124,9 +137,17 @@ public class FirstPageGui extends JFrame{
 		
 		lblImgPreview.setBorder(BorderFactory.createEtchedBorder());
 		
+		// Age Rating Label & The Value It Will Display Depending On The Movie Selected
+		lblAgeRating.setFont(new Font ("Times New Roman", Font.BOLD, 10));
+		lblAgeRating.setForeground(new Color(0, 102, 255));
+		lblAgeRating.setText("Age Rating: ");
+		getContentPane().add(lblAgeRating);
+		lblAgeRating.setBounds(433,314,110,15);
+		
 		lblActualAgeRating.setFont(new Font ("Times New Roman", Font.BOLD, 12));
 		getContentPane().add(lblActualAgeRating);
 		lblActualAgeRating.setBounds(503,314,110,15);
+		
 		
 		// Heading With A Separator Between Movie And Theatre Details
 		lblTheatre_Time.setFont(new Font("Times New Roman",Font.BOLD,10));
@@ -138,12 +159,19 @@ public class FirstPageGui extends JFrame{
 		getContentPane().add(first_Seperator);
 		first_Seperator.setBounds(120,140,210,10);
 		
-
+		// Setting Up Theatre Number Labels
 		lblTheatreNo.setFont(new Font("Times New Roman",0,12));
 		lblTheatreNo.setText("Theatre No:"); 
 		getContentPane().add(lblTheatreNo);
 		lblTheatreNo.setBounds(10,160,80,15);
+		
 
+		lblActualTheatreNo.setFont(new Font("Times New Roman", Font.ITALIC,12));
+		lblActualTheatreNo.setForeground(new Color(0, 102, 255));
+		getContentPane().add(lblActualTheatreNo);
+		lblActualTheatreNo.setBounds(100,157,230,20);
+		
+		// Time of Show
 		lblTimeOfShow.setFont(new Font("Times New Roman",0,12));
 		lblTimeOfShow.setText("Time Of Show:");
 		getContentPane().add(lblTimeOfShow);
@@ -154,43 +182,7 @@ public class FirstPageGui extends JFrame{
 		getContentPane().add(lblActualTimeOfShow);
 		lblActualTimeOfShow.setBounds(110,182,100,20);
 		
-		
-		lblTicketHeading.setFont(new Font("Times New Roman", Font.BOLD,10));
-		lblTicketHeading.setForeground(new Color(0, 102, 255));
-		lblTicketHeading.setText("Ticket Pricing");
-		getContentPane().add(lblTicketHeading);
-		lblTicketHeading.setBounds(10,212,110,15);
-		
-		getContentPane().add(third_Separator);
-		third_Separator.setBounds(90,222,240,10);
-		
-		lblAdultTicket.setFont(new Font("Times New Roman",0,12));
-		lblAdultTicket.setText("Adult Ticket: ");
-		getContentPane().add(lblAdultTicket);
-		lblAdultTicket.setBounds(10,242,80,15);
-		
-		cmbAdultTicket.setModel(new DefaultComboBoxModel<String>(new String[]{" ","1","2","3",
-				"4","5","6","7","8"}));
-		getContentPane().add(cmbAdultTicket);
-		cmbAdultTicket.setBounds(95,239,40,20);
-		
-		lblChildTicket.setFont(new Font("Times New Roman",0,12));
-		lblChildTicket.setText("Child Ticket: ");
-		getContentPane().add(lblChildTicket);
-		lblChildTicket.setBounds(10,272,80,15);
-		
-		cmbChildTicket.setModel(new DefaultComboBoxModel<String>(new String[]{" ","1","2","3",
-				"4","5","6","7","8"}));
-		getContentPane().add(cmbChildTicket);
-		cmbChildTicket.setBounds(95,269,40,20);
-		
-		
-		// Setting Up Theatre Number Labels
-		lblActualTheatreNo.setFont(new Font("Times New Roman", Font.ITALIC,12));
-		lblActualTheatreNo.setForeground(new Color(0, 102, 255));
-		getContentPane().add(lblActualTheatreNo);
-		lblActualTheatreNo.setBounds(100,157,230,20);
-		
+		// Number Of Seats Available
 		lblNoSeats.setFont(new Font("Times New Roman",0,12));
 		lblNoSeats.setText("No. Seats: ");
 		getContentPane().add(lblNoSeats);
@@ -200,18 +192,69 @@ public class FirstPageGui extends JFrame{
 		lblActualNoSeats.setForeground(new Color(0, 102, 255));
 		getContentPane().add(lblActualNoSeats);
 		lblActualNoSeats.setBounds(257,157,51,20);
-		lblAgeRating = new JLabel();
+
+		
+		// Ticket Heading
+		lblTicketHeading.setFont(new Font("Times New Roman", Font.BOLD,10));
+		lblTicketHeading.setForeground(new Color(0, 102, 255));
+		lblTicketHeading.setText("Ticket Pricing");
+		getContentPane().add(lblTicketHeading);
+		lblTicketHeading.setBounds(10,212,110,15);
+		
+		getContentPane().add(third_Separator);
+		third_Separator.setBounds(90,222,240,10);
+		
+		// Adult Tickets
+		lblAdultTicket.setFont(new Font("Times New Roman",0,12));
+		lblAdultTicket.setText("Adult Ticket: ");
+		getContentPane().add(lblAdultTicket);
+		lblAdultTicket.setBounds(10,242,80,15);
+		
+		lblActualAdultTicket.setFont(new Font("Times New Roman",Font.ITALIC,12));
+		lblActualAdultTicket.setForeground(new Color(0, 102, 255));
+		getContentPane().add(lblActualAdultTicket);
+		lblActualAdultTicket.setBounds(100,239,51,20);
 		
 		
-		// Age Rating Label & The Value It Will Display Depending On The Movie Selected
-		lblAgeRating.setFont(new Font ("Times New Roman", Font.BOLD, 10));
-		lblAgeRating.setForeground(new Color(0, 102, 255));
-		lblAgeRating.setText("Age Rating: ");
-		getContentPane().add(lblAgeRating);
-		lblAgeRating.setBounds(433,314,110,15);
+		// Child Tickets
+		lblChildTicket.setFont(new Font("Times New Roman",0,12));
+		lblChildTicket.setText("Child Ticket: ");
+		getContentPane().add(lblChildTicket);
+		lblChildTicket.setBounds(10,272,80,15);
 		
+		lblActualChildTicket.setFont(new Font("Times New Roman",Font.ITALIC,12));
+		lblActualChildTicket.setForeground(new Color(0, 102, 255));
+		getContentPane().add(lblActualChildTicket);
+		lblActualChildTicket.setBounds(100,269,51,20);
+		
+		// Quantity & Combobox's For Tickets
+		
+		lblAdultQty.setFont(new Font("Times New Roman",0,12));
+		lblAdultQty.setText("Quantity: ");
+		getContentPane().add(lblAdultQty);
+		lblAdultQty.setBounds(200,242,80,15);
+		
+		lblChildQty.setFont(new Font("Times New Roman",0,12));
+		lblChildQty.setText("Quantity: ");
+		getContentPane().add(lblChildQty);
+		lblChildQty.setBounds(200,270,80,15);
+		
+				
 		
 
+		cmbAdultTicket.setModel(new DefaultComboBoxModel<String>(new String[]{"0","1","2","3",
+				"4","5","6","7","8"}));
+		getContentPane().add(cmbAdultTicket);
+		cmbAdultTicket.setBounds(268,240,40,20);
+ 	   cmbAdultTicket.setEnabled(false);
+		
+		
+		cmbChildTicket.setModel(new DefaultComboBoxModel<String>(new String[]{"0","1","2","3",
+				"4","5","6","7","8"}));
+		getContentPane().add(cmbChildTicket);
+		cmbChildTicket.setBounds(268,267,40,20);
+ 	    cmbChildTicket.setEnabled(false);
+		
 		
 		
 	}
@@ -219,7 +262,9 @@ public class FirstPageGui extends JFrame{
 	private void cmbMoviesActionPerformed(ActionEvent evt) {
 			lblImgPreview.setText("");
 			comboIndex1 = cmbMovies.getSelectedIndex();
-			
+	    	cmbAdultTicket.setEnabled(true);
+	    	cmbChildTicket.setEnabled(true);
+
 			if (comboIndex1 == 1){
 	           lblImgPreview.setIcon(new ImageIcon(getClass().getResource("Doctor_Strange.jpg"))); 
 	       } else if (comboIndex1 == 2){
@@ -243,12 +288,14 @@ public class FirstPageGui extends JFrame{
 	       } else{
 	    	   lblImgPreview.setIcon(new ImageIcon(getClass().getResource("")));
 	    	   lblImgPreview.setText("SELECT A MOVIE");
+	    	   cmbAdultTicket.setEnabled(false);
+	    	   cmbChildTicket.setEnabled(false);
+	    	   
 	       }
 	
 	}
 	
 	private void lblMoviesTheatreActionPerformed(ActionEvent evt){
-		comboIndex1 = cmbMovies.getSelectedIndex();
 		
 		if (comboIndex1 == 1){
 			lblActualTheatreNo.setText("CW-01-01");
@@ -284,7 +331,6 @@ public class FirstPageGui extends JFrame{
 	}
 	
 	private void lblMovieAgeRatingActionPerformed(ActionEvent evt){
-		comboIndex1 = cmbMovies.getSelectedIndex();
 		if (comboIndex1 == 1){
 			lblActualAgeRating.setForeground(Color.ORANGE);
 			lblActualAgeRating.setText("12A");
@@ -318,37 +364,76 @@ public class FirstPageGui extends JFrame{
 		}else{
 				lblActualAgeRating.setText("");
 		}
-		
 
 	}
 	
 	
 	private void lblNoSeatsActionPerformed(ActionEvent evt){
 		if (comboIndex1 == 1){
-			lblActualNoSeats.setText(roomCapacity150);
+			lblActualNoSeats.setText(strRoomCapacity150);
 		}else if (comboIndex1 == 2){
-			lblActualNoSeats.setText(roomCapacity250);
+			lblActualNoSeats.setText(strRoomCapacity250);
 		}else if (comboIndex1 == 3){
-			lblActualNoSeats.setText(roomCapacity250);
+			lblActualNoSeats.setText(strRoomCapacity250);
 		}else if (comboIndex1 == 4){
-			lblActualNoSeats.setText(roomCapacity75);
+			lblActualNoSeats.setText(strRoomCapacity75);
 		}else if (comboIndex1 == 5){
-			lblActualNoSeats.setText(roomCapacity250);
+			lblActualNoSeats.setText(strRoomCapacity250);
 		}else if (comboIndex1 == 6){
-			lblActualNoSeats.setText(roomCapacity150);
+			lblActualNoSeats.setText(strRoomCapacity150);
 		}else if (comboIndex1 == 7){
-			lblActualNoSeats.setText(roomCapacity25);
+			lblActualNoSeats.setText(strRoomCapacity25);
 		}else if (comboIndex1 == 8){
-			lblActualNoSeats.setText(roomCapacity150);
+			lblActualNoSeats.setText(strRoomCapacity150);
 		}else if (comboIndex1 == 9){
-			lblActualNoSeats.setText(roomCapacity75);
+			lblActualNoSeats.setText(strRoomCapacity75);
 		}else if (comboIndex1 == 10){
-			lblActualNoSeats.setText(roomCapacity75);
+			lblActualNoSeats.setText(strRoomCapacity75);
+		}else{
+			lblActualNoSeats.setText("");
 		}
 	}
 	
 	
-}	
+	private void lblTicketPriceActionPerformed(ActionEvent evt){
+		if (comboIndex1 == 1){
+			lblActualAdultTicket.setText(strTicketPriceSeven);
+			lblActualChildTicket.setText(strTicketPriceFive);
+		}else if (comboIndex1 == 2){
+			lblActualAdultTicket.setText(strTicketPriceSeven);
+			lblActualChildTicket.setText(strTicketPriceFive);
+		}else if (comboIndex1 == 3){
+			lblActualAdultTicket.setText(strTicketPriceFive);
+			lblActualChildTicket.setText(strTicketPriceThree);
+		}else if (comboIndex1 == 4){
+			lblActualAdultTicket.setText(strTicketPriceFive);
+			lblActualChildTicket.setText(strTicketPriceThree);
+		}else if (comboIndex1 == 5){
+			lblActualAdultTicket.setText(strTicketPriceSeven);
+			lblActualChildTicket.setText(strTicketPriceFive);
+		}else if (comboIndex1 == 6){
+			lblActualAdultTicket.setText(strTicketPriceSeven);
+			lblActualChildTicket.setText(strTicketPriceFive);
+		}else if (comboIndex1 == 7){
+			lblActualAdultTicket.setText(strTicketPriceFive);
+			lblActualChildTicket.setText(strTicketPriceThree);
+		}else if (comboIndex1 == 8){
+			lblActualAdultTicket.setText(strTicketPriceSeven);
+			lblActualChildTicket.setText(strTicketPriceFive);
+		}else if (comboIndex1 == 9){
+			lblActualAdultTicket.setText(strTicketPriceFive);
+			lblActualChildTicket.setText(strTicketPriceThree);
+		}else if (comboIndex1 == 10){
+			lblActualAdultTicket.setText(strTicketPriceFive);
+			lblActualChildTicket.setText(strTicketPriceThree);
+		}else{
+			lblActualAdultTicket.setText("");
+			lblActualChildTicket.setText("");
+		
+		}
+	}
 	
+
+}
 
 
