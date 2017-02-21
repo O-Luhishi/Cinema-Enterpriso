@@ -44,6 +44,7 @@ public class FirstPageGui extends JFrame{
 	private JLabel lblActualChildTicket;
 	private JLabel lblAdultQty;
 	private JLabel lblChildQty;
+	private JLabel lblTicketSubTotal;
 	
 	
 	// Declaring JComboBox's 
@@ -80,6 +81,7 @@ public class FirstPageGui extends JFrame{
 		lblActualChildTicket = new JLabel();
 		lblAdultQty = new JLabel();
 		lblChildQty = new JLabel();
+		lblTicketSubTotal = new JLabel();
 		
 
 		// ComboBox Init's
