@@ -110,7 +110,7 @@ public class FirstPageGui extends JFrame{
 		cmbMovies.setModel(new DefaultComboBoxModel<String>(new String[]{"","Doctor Strange","T2 Trainspotting",
 				"Guardians of the Galaxy Vol2", 
 				"10 Cloverfield Lane","Disney: Moana","Rogue One: Star Wars","Kung Fu Panda 3","Power Rangers MMPR",
-				"Avengers: Age of Ultron","Batman VS Superman",}));
+				"Avengers: Age of Ultron","Batman VS Superman"}));
 		
 		getContentPane().add(cmbMovies);
 		cmbMovies.setBounds(100,90,230,25);
@@ -127,6 +127,8 @@ public class FirstPageGui extends JFrame{
 	                lblTicketPriceActionPerformed(evt);
 	            }
 	        });
+	    
+
 	      
 	    // Setting Up The Image Preview For When The Program First Runs
 		lblImgPreview.setBounds(350,60,250,250);
