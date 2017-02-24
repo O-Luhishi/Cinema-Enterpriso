@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 
 public class Film {
 	
@@ -10,7 +9,6 @@ public class Film {
 	private String theatreNumber;
 	private String timeOfShow;
 	
-	
 	public Film(String Film, int RoomCap, String ChildTicket, String AdultTicket,
 			String Age, String Theatre, String TimeOfShow){
 		
@@ -21,7 +19,6 @@ public class Film {
 		ageRating = Age;
 		theatreNumber = Theatre;
 		timeOfShow = TimeOfShow;
-		
 	}
 	
 	public String getFilm(){
@@ -39,6 +36,22 @@ public class Film {
 	public int getRoomCapacity(){
 		return roomCapacity;
 	}
+	
+	public String getAgeRating(){
+		return ageRating;
+		}
+	
+	public String getTheatreNumber(){
+		return theatreNumber;
+	}
+	
+	public String getTimeOfShow(){
+		return timeOfShow;
+	}
+	
 }
+
+
+
 
 

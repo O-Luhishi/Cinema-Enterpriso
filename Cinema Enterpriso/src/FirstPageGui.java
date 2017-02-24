@@ -260,7 +260,6 @@ public class FirstPageGui extends JFrame{
  	    cmbChildTicket.setEnabled(false);
 		
 		
-		
 	}
 	
 	private void cmbMoviesActionPerformed(ActionEvent evt) {
@@ -436,6 +435,7 @@ public class FirstPageGui extends JFrame{
 		
 		}
 	}
+
 	
 
 }
