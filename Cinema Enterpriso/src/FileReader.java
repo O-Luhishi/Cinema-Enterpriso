@@ -6,7 +6,7 @@ public class FileReader {
 	
 	ArrayList<Film> movie = new ArrayList<Film>();
 	String[]keyword = new String[7];
-	String fName, fRating, fAdultTicket, fChildTicket, fTheatreRoom, fTime;
+	String fName, fRating, fAdultTicket, fChildTicket, fTheatreRoom, fTime, fLocation;
 	int fCapacity;
 	String movieFile = "MovieList.txt";
 	String line;
@@ -34,10 +34,11 @@ public class FileReader {
 			fChildTicket = keyword[3];
 			fCapacity = Integer.parseInt(keyword[4]);
 			fTheatreRoom = keyword[5];
-			fTime = keyword[6];	
+			fTime = keyword[6];
+			fLocation = keyword[7];
 			
 			
-			shogun = new Film(fName, fRating, fAdultTicket, fChildTicket, fCapacity, fTheatreRoom, fTime);
+			shogun = new Film(fName, fRating, fAdultTicket, fChildTicket, fCapacity, fTheatreRoom, fTime, fLocation);
 			movie.add(shogun);
 		}
 	}
@@ -46,11 +47,13 @@ public class FileReader {
 		movieScan.close();
 	}
 	
-	public String displayAllFilms(){
+	public String[] displayAllFilms(){
+		String[] toRet = new String[movie.size()];
 		for (int i=0; i < movie.size(); i++){
-			return movie.get(i).getFilm();
+			toRet[i] = movie.get(i).getFilm();
 		}
-		throw new NullPointerException("No Film Exists");
+		return toRet;
+		//throw new NullPointerException("No Film Exists");
 	}
 	
 	public String displayFilmName(int index){
@@ -79,6 +82,14 @@ public class FileReader {
 	
 	public String displayTimeOfShow(int index){
 		return movie.get(index).getTimeOfShow();
+	}
+	
+	public String [] displayFilmLocation(){
+		String[] toRet = new String[movie.size()];
+		for (int i=0; i < movie.size(); i++){
+			toRet[i] = movie.get(i).getFilm();
+		}
+		return toRet;
 	}
 }
 

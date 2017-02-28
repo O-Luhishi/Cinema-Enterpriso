@@ -113,7 +113,7 @@ public class FirstPageGui extends JFrame{
 		
 		
 		 //Combo Box For Movie Selection
-		cmbMovies.setModel(new DefaultComboBoxModel<String>(new String[]{"", movieFile.displayAllFilms()}));
+		cmbMovies.setModel(new DefaultComboBoxModel<String>(movieFile.displayAllFilms()));
 		
 		getContentPane().add(cmbMovies);
 		cmbMovies.setBounds(100,90,230,25);
@@ -330,7 +330,7 @@ public class FirstPageGui extends JFrame{
 	}
 	
 	private void lblMoviesTimeActionPerformed(ActionEvent evt){
-		if((String)cmbMovies.getSelectedItem() == ""){
+		if(comboIndex1 == 0){
 			lblActualTimeOfShow.setText("");
 		} else{
 			lblActualTimeOfShow.setText("9:00 PM");

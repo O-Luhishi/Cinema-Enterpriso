@@ -1,4 +1,11 @@
-Lord Of The Rings; 12A; £12; £9; 200; CW1-04; 9:00PM;
+; 12A; £12; £9; 200; CW1-04; 9:00PM;
 Doctor Strange; 12A; £12; £9; 200; CW1-04; 9:00PM; 
 T2 Trainspotting; 12A; £12; £9; 200; CW1-04; 9:00PM;
 Guardians Of The Galaxy; 12A; £12; £9; 200; CW1-04; 9:00PM;
+10 Cloverfield Lane; 12A; £12; £9; 200; CW1-04; 9:00PM;
+Moana; 12A; £12; £9; 200; CW1-04; 9:00PM;
+Rogue One; 12A; £12; £9; 200; CW1-04; 9:00PM;
+Kung-Fu Panda 3; 12A; £12; £9; 200; CW1-04; 9:00PM;
+Power Rangers MMPR; 12A; £12; £9; 200; CW1-04; 9:00PM;
+Avengers Age Of Ultron; 12A; £12; £9; 200; CW1-04; 9:00PM;
+Batman Vs Superman; 12A; £12; £9; 200; CW1-04; 9:00PM;
