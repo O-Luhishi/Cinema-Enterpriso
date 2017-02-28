@@ -61,6 +61,11 @@ public class FirstPageGui extends JFrame{
 		getContentPane().setBackground(Color.LIGHT_GRAY);
 		getContentPane().setLayout(null);
 		
+		FileReader movieFile = new FileReader();
+		movieFile.openFile();
+		movieFile.readFile();
+		
+		
 		// Label Init's
 		lblCinemaTitle = new JLabel();
 		lblMovieSelection = new JLabel();
@@ -82,6 +87,7 @@ public class FirstPageGui extends JFrame{
 		lblAdultQty = new JLabel();
 		lblChildQty = new JLabel();
 		lblTicketSubTotal = new JLabel();
+		
 		
 
 		// ComboBox Init's
@@ -106,11 +112,8 @@ public class FirstPageGui extends JFrame{
 		lblMovieSelection.setBounds(10,95,80,15);
 		
 		
-		// Combo Box For Movie Selection
-		cmbMovies.setModel(new DefaultComboBoxModel<String>(new String[]{"","Doctor Strange","T2 Trainspotting",
-				"Guardians of the Galaxy Vol2", 
-				"10 Cloverfield Lane","Disney: Moana","Rogue One: Star Wars","Kung Fu Panda 3","Power Rangers MMPR",
-				"Avengers: Age of Ultron","Batman VS Superman"}));
+		 //Combo Box For Movie Selection
+		cmbMovies.setModel(new DefaultComboBoxModel<String>(new String[]{"", movieFile.displayAllFilms()}));
 		
 		getContentPane().add(cmbMovies);
 		cmbMovies.setBounds(100,90,230,25);
@@ -259,7 +262,8 @@ public class FirstPageGui extends JFrame{
 		cmbChildTicket.setBounds(268,267,40,20);
  	    cmbChildTicket.setEnabled(false);
 		
-		
+		movieFile.closeFile();
+ 	    
 	}
 	
 	private void cmbMoviesActionPerformed(ActionEvent evt) {

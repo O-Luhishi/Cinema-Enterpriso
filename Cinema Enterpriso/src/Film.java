@@ -2,18 +2,17 @@
 public class Film {
 	
 	private String filmName;
-	private int roomCapacity;
+	private int noSeats;
 	private String childTicketPrice;
 	private String adultTicketPrice;
 	private String ageRating;
 	private String theatreNumber;
 	private String timeOfShow;
 	
-	public Film(String Film, int RoomCap, String ChildTicket, String AdultTicket,
-			String Age, String Theatre, String TimeOfShow){
+	public Film(String Film, String Age, String AdultTicket,String ChildTicket, int RoomCap, String Theatre, String TimeOfShow){
 		
 		filmName = Film;
-		roomCapacity = RoomCap;
+		noSeats = RoomCap;
 		childTicketPrice = ChildTicket;
 		adultTicketPrice = AdultTicket;
 		ageRating = Age;
@@ -34,7 +33,7 @@ public class Film {
 	}
 	
 	public int getRoomCapacity(){
-		return roomCapacity;
+		return noSeats;
 	}
 	
 	public String getAgeRating(){
@@ -48,6 +47,7 @@ public class Film {
 	public String getTimeOfShow(){
 		return timeOfShow;
 	}
+	
 	
 }
 
