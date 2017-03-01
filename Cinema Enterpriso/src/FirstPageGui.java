@@ -261,46 +261,73 @@ public class FirstPageGui extends JFrame{
 		getContentPane().add(cmbChildTicket);
 		cmbChildTicket.setBounds(268,267,40,20);
  	    cmbChildTicket.setEnabled(false);
-		
-		movieFile.closeFile();
+ 		movieFile.closeFile();
+
  	    
 	}
 	
 	private void cmbMoviesActionPerformed(ActionEvent evt) {
+			FileReader movieFile = new FileReader();
+			movieFile.openFile();
+			movieFile.readFile();
+			
 			lblImgPreview.setText("");
 			comboIndex1 = cmbMovies.getSelectedIndex();
 	    	cmbAdultTicket.setEnabled(true);
 	    	cmbChildTicket.setEnabled(true);
-
+	    	
+	    	
 			if (comboIndex1 == 1){
-	           lblImgPreview.setIcon(new ImageIcon(getClass().getResource("Doctor_Strange.jpg"))); 
-	       } else if (comboIndex1 == 2){
-	    	   lblImgPreview.setIcon(new ImageIcon(getClass().getResource("T2Trainspotting.jpg")));
-	       } else if (comboIndex1 == 3){
-	    	   lblImgPreview.setIcon(new ImageIcon(getClass().getResource("GuardiansOfGalaxy.jpg")));
-	       } else if (comboIndex1 == 4){
-	    	   lblImgPreview.setIcon(new ImageIcon(getClass().getResource("10_Cloverfield_Lane.jpg")));
-	       } else if (comboIndex1 == 5){
-	    	   lblImgPreview.setIcon(new ImageIcon(getClass().getResource("Moana.jpg")));
-	       } else if (comboIndex1 == 6){
-	    	   lblImgPreview.setIcon(new ImageIcon(getClass().getResource("rogueone.jpg")));
-	       } else if (comboIndex1 == 7){
-	    	   lblImgPreview.setIcon(new ImageIcon(getClass().getResource("kung-fu-panda-3.jpg")));
-	       } else if (comboIndex1 == 8){
-	    	   lblImgPreview.setIcon(new ImageIcon(getClass().getResource("Power-Rangers-Movie-2017.jpg")));
-	       } else if (comboIndex1 == 9){
-	    	   lblImgPreview.setIcon(new ImageIcon(getClass().getResource("Avengers.jpg")));
-	       } else if (comboIndex1 == 10){
-	    	   lblImgPreview.setIcon(new ImageIcon(getClass().getResource("BatmanVsSuperman.jpg")));
-	       } else{
-	    	   lblImgPreview.setIcon(new ImageIcon(getClass().getResource("")));
-	    	   lblImgPreview.setText("SELECT A MOVIE");
-	    	   cmbAdultTicket.setEnabled(false);
-	    	   cmbChildTicket.setEnabled(false);
-	    	   
-	       }
-	
+		           lblImgPreview.setIcon(new ImageIcon(getClass().getResource(movieFile.displayFilmImage(1)))); 
+		       } else if (comboIndex1 == 2){
+		    	   lblImgPreview.setIcon(new ImageIcon(getClass().getResource(movieFile.displayFilmImage(2))));
+		       } else if (comboIndex1 == 3){
+		    	   lblImgPreview.setIcon(new ImageIcon(getClass().getResource(movieFile.displayFilmImage(comboIndex1))));
+		       } else if (comboIndex1 == 4){
+		    	   lblImgPreview.setIcon(new ImageIcon(getClass().getResource(movieFile.displayFilmImage(comboIndex1))));
+		       } else if (comboIndex1 == 5){
+		    	   lblImgPreview.setIcon(new ImageIcon(getClass().getResource(movieFile.displayFilmImage(comboIndex1))));
+		       } else if (comboIndex1 == 6){
+		    	   lblImgPreview.setIcon(new ImageIcon(getClass().getResource(movieFile.displayFilmImage(comboIndex1))));
+		       } else if (comboIndex1 == 7){
+		    	   lblImgPreview.setIcon(new ImageIcon(getClass().getResource(movieFile.displayFilmImage(comboIndex1))));
+		       } else if (comboIndex1 == 8){
+		    	   lblImgPreview.setIcon(new ImageIcon(getClass().getResource(movieFile.displayFilmImage(comboIndex1))));
+		       } else if (comboIndex1 == 9){
+		    	   lblImgPreview.setIcon(new ImageIcon(getClass().getResource(movieFile.displayFilmImage(comboIndex1))));
+		       } else if (comboIndex1 == 10){
+		    	   lblImgPreview.setIcon(new ImageIcon(getClass().getResource(movieFile.displayFilmImage(comboIndex1))));
+		       } else{
+		    	   lblImgPreview.setIcon(new ImageIcon(getClass().getResource("")));
+		    	   lblImgPreview.setText("SELECT A MOVIE");
+		    	   cmbAdultTicket.setEnabled(false);
+		    	   cmbChildTicket.setEnabled(false);
+		    	   
+		       }
+			
+//	    	for (int i = 1; i < movieFile.movie.size(); i++){
+//	    		lblImgPreview.setIcon(new ImageIcon(getClass().getResource(movieFile.displayFilmImage(comboIndex1)))); 
+//    	}
+//    	
+//	    	if (comboIndex1 == 0){
+//	            lblImgPreview.setIcon(new ImageIcon(getClass().getResource("")));
+//	     	   lblImgPreview.setText("SELECT A MOVIE");
+//	     	   cmbAdultTicket.setEnabled(false);
+//	     	   cmbChildTicket.setEnabled(false);
+//	     	}
+	    	
+//	    	for (int i=1; i < comboIndex1; i++){
+//    		lblImgPreview.setIcon(new ImageIcon(getClass().getResource(movieFile.displayFilmImage(i)))); 
+//    	}
+//    	
+
+	    	
+	    	movieFile.closeFile();
 	}
+
+
+	
+	
 	
 	private void lblMoviesTheatreActionPerformed(ActionEvent evt){
 		
@@ -440,7 +467,7 @@ public class FirstPageGui extends JFrame{
 		}
 	}
 
-	
+
 
 }
 

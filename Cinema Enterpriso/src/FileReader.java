@@ -53,7 +53,6 @@ public class FileReader {
 			toRet[i] = movie.get(i).getFilm();
 		}
 		return toRet;
-		//throw new NullPointerException("No Film Exists");
 	}
 	
 	public String displayFilmName(int index){
@@ -84,12 +83,8 @@ public class FileReader {
 		return movie.get(index).getTimeOfShow();
 	}
 	
-	public String [] displayFilmLocation(){
-		String[] toRet = new String[movie.size()];
-		for (int i=0; i < movie.size(); i++){
-			toRet[i] = movie.get(i).getFilm();
-		}
-		return toRet;
+	public String displayFilmImage(int index){
+		return movie.get(index).getFilmAddress();
 	}
 }
 
