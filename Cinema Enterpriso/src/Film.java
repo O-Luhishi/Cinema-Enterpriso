@@ -9,9 +9,10 @@ public class Film {
 	private String theatreNumber;
 	private String timeOfShow;
 	private String filmAddress;
+	private String filmRatingColour;
 	
 	public Film(String Film, String Age, String AdultTicket,String ChildTicket, int RoomCap, String Theatre, String TimeOfShow,
-			String FilmLocation){
+			String FilmLocation, String ratingColour){
 		
 		filmName = Film;
 		noSeats = RoomCap;
@@ -21,6 +22,7 @@ public class Film {
 		theatreNumber = Theatre;
 		timeOfShow = TimeOfShow;
 		filmAddress = FilmLocation;
+		filmRatingColour = ratingColour;
 		
 	}
 	
@@ -56,6 +58,10 @@ public class Film {
 		return filmAddress;
 	}
 	
+	public String getFilmRatingColour(){
+		return filmRatingColour;
+	}
+
 }
 
 

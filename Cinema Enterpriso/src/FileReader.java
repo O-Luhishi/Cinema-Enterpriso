@@ -5,8 +5,8 @@ public class FileReader {
 	private Scanner movieScan;
 	
 	ArrayList<Film> movie = new ArrayList<Film>();
-	String[]keyword = new String[7];
-	String fName, fRating, fAdultTicket, fChildTicket, fTheatreRoom, fTime, fLocation;
+	String[]keyword = new String[8];
+	String fName, fRating, fAdultTicket, fChildTicket, fTheatreRoom, fTime, fLocation, fRatingColour;
 	int fCapacity;
 	String movieFile = "MovieList.txt";
 	String line;
@@ -36,9 +36,10 @@ public class FileReader {
 			fTheatreRoom = keyword[5];
 			fTime = keyword[6];
 			fLocation = keyword[7];
+			fRatingColour = keyword[8];
 			
 			
-			shogun = new Film(fName, fRating, fAdultTicket, fChildTicket, fCapacity, fTheatreRoom, fTime, fLocation);
+			shogun = new Film(fName, fRating, fAdultTicket, fChildTicket, fCapacity, fTheatreRoom, fTime, fLocation, fRatingColour);
 			movie.add(shogun);
 		}
 	}
@@ -85,6 +86,10 @@ public class FileReader {
 	
 	public String displayFilmImage(int index){
 		return movie.get(index).getFilmAddress();
+	}
+	
+	public String displayFilmRatingColour(int index){
+		return movie.get(index).getFilmRatingColour();
 	}
 }
 

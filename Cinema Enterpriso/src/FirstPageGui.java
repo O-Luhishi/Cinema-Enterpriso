@@ -20,9 +20,9 @@ public class FirstPageGui extends JFrame{
 	private String strRoomCapacity75 = "75";
 	private String strRoomCapacity150 = "150";
 	private String strRoomCapacity250 = "250";
-	private String strTicketPriceSeven = "Â£7.00";
-	private String strTicketPriceFive = "Â£5.00";
-	private String strTicketPriceThree = "Â£3.00";
+	private String strTicketPriceSeven = "£7.00";
+	private String strTicketPriceFive = "£5.00";
+	private String strTicketPriceThree = "£3.00";
 	
 	// Declaring JLabel 
 	private JLabel lblCinemaTitle;
@@ -56,12 +56,14 @@ public class FirstPageGui extends JFrame{
 	private JSeparator first_Seperator;
 	private JSeparator third_Separator;
 	
+	FileReader movieFile = new FileReader();
+	
 	public FirstPageGui(){
 		super("Cinema Enterpriso");
 		getContentPane().setBackground(Color.LIGHT_GRAY);
 		getContentPane().setLayout(null);
 		
-		FileReader movieFile = new FileReader();
+
 		movieFile.openFile();
 		movieFile.readFile();
 		
@@ -166,7 +168,7 @@ public class FirstPageGui extends JFrame{
 		getContentPane().add(first_Seperator);
 		first_Seperator.setBounds(120,140,210,10);
 		
-		// Setting Up Theatre Number Labels
+		// Setting Up Theater Number Labels
 		lblTheatreNo.setFont(new Font("Times New Roman",0,12));
 		lblTheatreNo.setText("Theatre No:"); 
 		getContentPane().add(lblTheatreNo);
@@ -261,16 +263,14 @@ public class FirstPageGui extends JFrame{
 		getContentPane().add(cmbChildTicket);
 		cmbChildTicket.setBounds(268,267,40,20);
  	    cmbChildTicket.setEnabled(false);
+ 	    
  		movieFile.closeFile();
 
  	    
 	}
 	
 	private void cmbMoviesActionPerformed(ActionEvent evt) {
-			FileReader movieFile = new FileReader();
-			movieFile.openFile();
-			movieFile.readFile();
-			
+
 			lblImgPreview.setText("");
 			comboIndex1 = cmbMovies.getSelectedIndex();
 	    	cmbAdultTicket.setEnabled(true);
@@ -278,7 +278,7 @@ public class FirstPageGui extends JFrame{
 			
 	    	for (int i=0; i < comboIndex1; i++){
 	    		lblImgPreview.setIcon(new ImageIcon(getClass().getResource(movieFile.displayFilmImage(comboIndex1)))); 
-    	}
+	    	}
     	
 	    	if (comboIndex1 == 0){
 	            lblImgPreview.setIcon(new ImageIcon(getClass().getResource("")));
@@ -287,38 +287,18 @@ public class FirstPageGui extends JFrame{
 	     	   cmbChildTicket.setEnabled(false);
 	     	}
 
-	    	movieFile.closeFile();
+
 	}
-
-
 	
-	
+
 	
 	private void lblMoviesTheatreActionPerformed(ActionEvent evt){
+		lblActualTheatreNo.setText(movieFile.displayTheatreRoom(comboIndex1));
 		
-		if (comboIndex1 == 1){
-			lblActualTheatreNo.setText("CW-01-01");
-		}else if (comboIndex1 == 2){
-			lblActualTheatreNo.setText("CW-01-02");
-		}else if (comboIndex1 == 3){
-			lblActualTheatreNo.setText("CW-01-03");
-		}else if (comboIndex1 == 4){
-			lblActualTheatreNo.setText("CW-01-04");
-		}else if (comboIndex1 == 5){
-			lblActualTheatreNo.setText("CW-01-05");
-		}else if (comboIndex1 == 6){
-			lblActualTheatreNo.setText("CW-02-01");
-		}else if (comboIndex1 == 7){
-			lblActualTheatreNo.setText("CW-02-02");	
-		}else if (comboIndex1 == 8){
-			lblActualTheatreNo.setText("CW-02-03");	
-		}else if (comboIndex1 == 9){
-			lblActualTheatreNo.setText("CW-02-04");	
-		}else if (comboIndex1 == 10){
-			lblActualTheatreNo.setText("CW-02-05");
-		}else{
+		if (comboIndex1 == 0){
 			lblActualTheatreNo.setText("");
 		}
+		
 	}
 	
 	private void lblMoviesTimeActionPerformed(ActionEvent evt){
@@ -329,42 +309,49 @@ public class FirstPageGui extends JFrame{
 		}
 	}
 	
+	
 	private void lblMovieAgeRatingActionPerformed(ActionEvent evt){
-		if (comboIndex1 == 1){
-			lblActualAgeRating.setForeground(Color.ORANGE);
-			lblActualAgeRating.setText("12A");
-		}else if (comboIndex1 == 2){
-			lblActualAgeRating.setForeground(Color.RED);
-			lblActualAgeRating.setText("18");
-		}else if (comboIndex1 == 3){
-			lblActualAgeRating.setForeground(Color.GREEN);
-			lblActualAgeRating.setText("PG");
-		}else if (comboIndex1 == 4){
-			lblActualAgeRating.setForeground(Color.RED);
-			lblActualAgeRating.setText("15");
-		}else if (comboIndex1 == 5){
-			lblActualAgeRating.setForeground(Color.GREEN);
-			lblActualAgeRating.setText("PG");
-		}else if (comboIndex1 == 6){
-			lblActualAgeRating.setForeground(Color.RED);
-			lblActualAgeRating.setText("15");
-		}else if (comboIndex1 == 7){
-			lblActualAgeRating.setForeground(Color.GREEN);
-			lblActualAgeRating.setText("PG");
-		}else if (comboIndex1 == 8){
-			lblActualAgeRating.setForeground(Color.ORANGE);
-			lblActualAgeRating.setText("12A");
-		}else if (comboIndex1 == 9){
-			lblActualAgeRating.setForeground(Color.ORANGE);
-			lblActualAgeRating.setText("12A");
-		}else if (comboIndex1 == 10){
-			lblActualAgeRating.setForeground(Color.ORANGE);
-			lblActualAgeRating.setText("12A");
-		}else{
-				lblActualAgeRating.setText("");
-		}
-
+		
+		//lblActualAgeRating.setForeground(movieFile.displayFilmRatingColour(comboIndex1));
+		lblActualAgeRating.setText(movieFile.displayFilmRating(comboIndex1));
 	}
+		
+		
+//		if (comboIndex1 == 1){
+//			lblActualAgeRating.setForeground(Color.ORANGE);
+//			lblActualAgeRating.setText("12A");
+//		}else if (comboIndex1 == 2){
+//			lblActualAgeRating.setForeground(Color.RED);
+//			lblActualAgeRating.setText("18");
+//		}else if (comboIndex1 == 3){
+//			lblActualAgeRating.setForeground(Color.GREEN);
+//			lblActualAgeRating.setText("PG");
+//		}else if (comboIndex1 == 4){
+//			lblActualAgeRating.setForeground(Color.RED);
+//			lblActualAgeRating.setText("15");
+//		}else if (comboIndex1 == 5){
+//			lblActualAgeRating.setForeground(Color.GREEN);
+//			lblActualAgeRating.setText("PG");
+//		}else if (comboIndex1 == 6){
+//			lblActualAgeRating.setForeground(Color.RED);
+//			lblActualAgeRating.setText("15");
+//		}else if (comboIndex1 == 7){
+//			lblActualAgeRating.setForeground(Color.GREEN);
+//			lblActualAgeRating.setText("PG");
+//		}else if (comboIndex1 == 8){
+//			lblActualAgeRating.setForeground(Color.ORANGE);
+//			lblActualAgeRating.setText("12A");
+//		}else if (comboIndex1 == 9){
+//			lblActualAgeRating.setForeground(Color.ORANGE);
+//			lblActualAgeRating.setText("12A");
+//		}else if (comboIndex1 == 10){
+//			lblActualAgeRating.setForeground(Color.ORANGE);
+//			lblActualAgeRating.setText("12A");
+//		}else{
+//				lblActualAgeRating.setText("");
+//		}
+
+
 	
 	
 	private void lblNoSeatsActionPerformed(ActionEvent evt){
