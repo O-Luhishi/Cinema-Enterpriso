@@ -6,8 +6,9 @@ public class FileReader {
 	
 	ArrayList<Film> movie = new ArrayList<Film>();
 	String[]keyword = new String[8];
-	String fName, fRating, fAdultTicket, fChildTicket, fTheatreRoom, fTime, fLocation, fRatingColour;
+	String fName, fRating, fTheatreRoom, fTime, fLocation, fRatingColour;
 	int fCapacity;
+	double fAdultTicket, fChildTicket;
 	String movieFile = "MovieList.txt";
 	String line;
 	Film shogun;
@@ -30,8 +31,8 @@ public class FileReader {
 			keyword = line.split("; ");
 			fName = keyword[0];
 			fRating = keyword[1];
-			fAdultTicket = keyword[2];
-			fChildTicket = keyword[3];
+			fAdultTicket = Double.parseDouble(keyword[2]);
+			fChildTicket = Double.parseDouble(keyword[3]);
 			fCapacity = Integer.parseInt(keyword[4]);
 			fTheatreRoom = keyword[5];
 			fTime = keyword[6];
@@ -64,11 +65,11 @@ public class FileReader {
 		return movie.get(index).getAgeRating();
 	}
 	
-	public String displayAdultTicket(int index){
+	public double displayAdultTicket(int index){
 		return movie.get(index).getAdultTicketPrice();
 	}
 	
-	public String displayChildTicket(int index){
+	public double displayChildTicket(int index){
 		return movie.get(index).getChildTicketPrice();
 	}
 	

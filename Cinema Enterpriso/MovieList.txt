@@ -1,11 +1,11 @@
-; 12A; £12; £9; 200; CW1-04; 9:00PM; Doctor_Strange.jpg; Color.ORANGE
-Doctor Strange; 12A; £12; £9; 200; CW-01-01; 9:00PM; Doctor_Strange.jpg; Color.ORANGE
-T2 Trainspotting; 12A; £12; £9; 200; CW-01-02; 9:00PM; T2Trainspotting.jpg; Color.RED
-Guardians Of The Galaxy; 12A; £12; £9; 200; CW-01-03; 9:00PM; GuardiansOfGalaxy.jpg; Color.GREEN
-10 Cloverfield Lane; 12A; £12; £9; 200; CW1-01-04; 9:00PM; 10_Cloverfield_Lane.jpg; Color.RED
-Moana; 12A; £12; £9; 200; CW1-01-05; 9:00PM; Moana.jpg;
-Rogue One; 12A; £12; £9; 200; CW-02-01; 9:00PM; rogueone.jpg;
-Kung-Fu Panda 3; 12A; £12; £9; 200; CW-02-02; 9:00PM; kung-fu-panda-3.jpg;
-Power Rangers MMPR; 12A; £12; £9; 200; CW-02-03; 9:00PM; Power-Rangers-Movie-2017.jpg;
-Avengers Age Of Ultron; 12A; £12; £9; 200; CW-02-04; 9:00PM; Avengers.jpg;
-Batman Vs Superman; 12A; £12; £9; 200; CW-02-05; 9:00PM; BatmanVsSuperman.jpg;
+; ; 12; 9; 200; CW1-04; 9:00PM; Doctor_Strange.jpg; Color.ORANGE
+Doctor Strange; 12A; 7; 5; 150; CW-01-01; 9:00PM; Doctor_Strange.jpg; Color.ORANGE
+T2 Trainspotting; 18; 7.00; 5.00; 250; CW-01-02; 9:00PM; T2Trainspotting.jpg; Color.RED
+Guardians Of The Galaxy; 12A; 5.00; 3.00; 250; CW-01-03; 9:00PM; GuardiansOfGalaxy.jpg; Color.GREEN
+10 Cloverfield Lane; 18; 5.00; 3.00; 75; CW1-01-04; 9:00PM; 10_Cloverfield_Lane.jpg; Color.RED
+Moana; PG; 7.00; 5.00; 250; CW1-01-05; 9:00PM; Moana.jpg; Color.GREEN
+Rogue One; 15; 7.00; 5.00; 150; CW-02-01; 9:00PM; rogueone.jpg; Color.ORANGE
+Kung-Fu Panda 3; PG; 5.00; 3.00; 25; CW-02-02; 9:00PM; kung-fu-panda-3.jpg; Color.GREEN
+Power Rangers MMPR; 12A; 7.00; 5.00; 150; CW-02-03; 9:00PM; Power-Rangers-Movie-2017.jpg; Color.ORANGE
+Avengers Age Of Ultron; 12A; 5.00; 3.00; 75; CW-02-04; 9:00PM; Avengers.jpg; Color.ORANGE
+Batman Vs Superman; 12A; 5.00; 3.00; 75; CW-02-05; 9:00PM; BatmanVsSuperman.jpg; Color.ORANGE
