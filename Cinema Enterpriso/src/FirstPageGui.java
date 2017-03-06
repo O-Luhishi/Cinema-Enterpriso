@@ -14,8 +14,16 @@ public class FirstPageGui extends JFrame{
 	
 	// Declaring Integers
 	private int comboIndex1;
+	private int adultQtyIndex;
+	private int childQtyIndex;
+	private double totalToPay;
+	private double subTotalTickets;
+	private double subTotalFood;
+	
 
-
+	private String strTotal;
+	private String paymentMethod;
+	
 	// Declaring JLabel 
 	private JLabel lblCinemaTitle;
 	private JLabel lblMovieSelection;
@@ -39,12 +47,23 @@ public class FirstPageGui extends JFrame{
 	private JLabel lblTicketSubTtl;
 	private JLabel lblActualTicketSubTtl;
 	private JLabel lblSnacks_Drinks;
-	
+	private JLabel lblSnacksQty;
+	private JLabel lblDrinksQty;
+	private JLabel lblSDSubTotal;
+	private JLabel lblActualSDSubTotal;
+	private JLabel lblTotalPrice;
+	private JLabel lblActualTotalPrice;
+	private JLabel lblCashOrCard;
+
 	
 	// Declaring JComboBox's 
 	private JComboBox<String> cmbMovies;
 	private JComboBox<String> cmbAdultTicket;
 	private JComboBox<String> cmbChildTicket;
+	private JComboBox<String> cmbSnacks;
+	private JComboBox<String> cmbSnacksQty;
+	private JComboBox<String> cmbDrinks;
+	private JComboBox<String> cmbDrinksQty;
  	
 	// Declaring JSeparator's
 	private JSeparator first_Separator;
@@ -52,8 +71,15 @@ public class FirstPageGui extends JFrame{
 	private JSeparator third_Separator;
 	private JSeparator fourth_Separator;
 	
-	FileReader movieFile = new FileReader();
-	private JLabel lblSubTotal;
+	// Declaring Radio Button's
+	private JRadioButton radioBtnCard;
+	private JRadioButton radioBtnCash;
+	
+	FilmFileReader movieFile = new FilmFileReader();
+	SnackFileReader snacksFile = new SnackFileReader();
+	DrinkFileReader drinksFile = new DrinkFileReader();
+
+
 	
 	public FirstPageGui(){
 		super("Cinema Enterpriso");
@@ -63,6 +89,12 @@ public class FirstPageGui extends JFrame{
 
 		movieFile.openFile();
 		movieFile.readFile();
+		
+		snacksFile.openFile();
+		snacksFile.readFile();
+		
+		drinksFile.openFile();
+		drinksFile.readFile();
 		
 		
 		// Label Init's
@@ -88,6 +120,13 @@ public class FirstPageGui extends JFrame{
 		lblTicketSubTtl = new JLabel();
 		lblActualTicketSubTtl = new JLabel();
 		lblSnacks_Drinks = new JLabel();
+		lblSnacksQty = new JLabel();
+		lblDrinksQty = new JLabel();
+		lblSDSubTotal = new JLabel();
+		lblActualSDSubTotal = new JLabel();
+		lblTotalPrice = new JLabel();
+		lblActualTotalPrice = new JLabel();
+		lblCashOrCard = new JLabel();
 		
 		
 		
@@ -96,6 +135,10 @@ public class FirstPageGui extends JFrame{
 		cmbMovies = new JComboBox<String>();
 		cmbAdultTicket = new JComboBox<String>();
 		cmbChildTicket = new JComboBox<String>();
+		cmbSnacks = new JComboBox<String>();
+		cmbSnacksQty = new JComboBox<String>();
+		cmbDrinks = new JComboBox<String>();
+		cmbDrinksQty = new JComboBox<String>();
 		
 		// Separator Init's
 		first_Separator = new JSeparator();
@@ -103,11 +146,20 @@ public class FirstPageGui extends JFrame{
 		third_Separator = new JSeparator();
 		fourth_Separator = new JSeparator(SwingConstants.VERTICAL);
 		
+		// Radio Button Init's
+		radioBtnCash = new JRadioButton();
+		radioBtnCash.setBackground(Color.LIGHT_GRAY);
+		radioBtnCard = new JRadioButton();
+		radioBtnCard.setBackground(Color.LIGHT_GRAY);
+		ButtonGroup group = new ButtonGroup();
+		group.add(radioBtnCard);
+		group.add(radioBtnCash);
+		
 		// Title Of The Program
-		lblCinemaTitle.setFont(new Font("Times New Roman",Font.ITALIC,18));
+		lblCinemaTitle.setFont(new Font("Times New Roman",Font.BOLD,18));
 		lblCinemaTitle.setText("HUDDERSFIELD CINEMAX");
 		getContentPane().add(lblCinemaTitle);
-		lblCinemaTitle.setBounds(200,15,240,30);
+		lblCinemaTitle.setBounds(170,15,309,30);
 		
 		// Movie Selection
 		lblMovieSelection.setFont(new Font("Times New Roman",0,12));
@@ -264,6 +316,8 @@ public class FirstPageGui extends JFrame{
 		cmbChildTicket.setBounds(276,239,40,20);
  	    cmbChildTicket.setEnabled(false);
  	    
+ 	    
+ 	    
  	    lblTicketSubTtl.setFont(new Font("Times New Roman",0,12));
  	    lblTicketSubTtl.setText("Sub Total:");
  	    lblTicketSubTtl.setBounds(105,272,90,15);
@@ -291,16 +345,131 @@ public class FirstPageGui extends JFrame{
 		cmbAdultTicket.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
             	lblSubTotalTicketActionPerformed(evt);
+            	cmbTicketQtyActionPerformed(evt);
             }
 		});
 
 		cmbChildTicket.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
             	lblSubTotalTicketActionPerformed(evt);
+            	cmbTicketQtyActionPerformed(evt);
             }
 		});
 		
+		
+		 //Combo Box For Snacks Selection
+		cmbSnacks.setModel(new DefaultComboBoxModel<String>(snacksFile.displayAllSnacks()));
+		getContentPane().add(cmbSnacks);
+		cmbSnacks.setBounds(18,335,177,25);
+		cmbSnacks.setEnabled(false);
+		
+		lblSnacksQty.setFont(new Font("Times New Roman",0,12));
+		lblSnacksQty.setText("Quantity: ");
+		getContentPane().add(lblSnacksQty);
+		lblSnacksQty.setBounds(208,338,80,15);
+		
+		cmbSnacksQty.setModel(new DefaultComboBoxModel<String>(new String[]{"0","1","2","3",
+				"4","5","6","7","8"}));
+		getContentPane().add(cmbSnacksQty);
+		cmbSnacksQty.setBounds(276,336,40,20);
+		cmbSnacksQty.setEnabled(false);
+		
+		 //Combo Box For Drinks Selection
+		cmbDrinks.setModel(new DefaultComboBoxModel<String>(drinksFile.displayAllDrinks()));
+		getContentPane().add(cmbDrinks);
+		cmbDrinks.setBounds(18,390,177,25);
+		cmbDrinks.setEnabled(false);
+		
+		lblDrinksQty.setFont(new Font("Times New Roman",0,12));
+		lblDrinksQty.setText("Quantity: ");
+		getContentPane().add(lblDrinksQty);
+		lblDrinksQty.setBounds(208,393,80,15);
+		
+		cmbDrinksQty.setModel(new DefaultComboBoxModel<String>(new String[]{"0","1","2","3",
+				"4","5","6","7","8"}));
+		getContentPane().add(cmbDrinksQty);
+		cmbDrinksQty.setBounds(276,391,40,20);
+		cmbDrinksQty.setEnabled(false);
+		
+		
+ 	    lblSDSubTotal.setFont(new Font("Times New Roman",0,12));
+ 	    lblSDSubTotal.setText("Sub Total:");
+ 	    lblSDSubTotal.setBounds(105,425,90,15);
+ 	    getContentPane().add(lblSDSubTotal);
+ 	    
+ 	    lblActualSDSubTotal.setFont(new Font("Times New Roman",Font.ITALIC,12));
+ 	    lblActualSDSubTotal.setForeground(new Color(0, 102, 255));
+ 	    lblActualSDSubTotal.setText("£0.00");
+ 	    lblActualSDSubTotal.setBounds(172,425,90,15);
+ 	    getContentPane().add(lblActualSDSubTotal);
+		
+		
+		cmbSnacks.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	cmbSnacksAndDrinksActionPerformed(evt);
+            }
+		});
+		
+		cmbDrinks.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	cmbSnacksAndDrinksActionPerformed(evt);
+            }
+		});
+		
+		cmbSnacksQty.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	lblSnackDrinkSubTotalActionPerformed(evt);
+            }
+		});
+		
+		cmbDrinksQty.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	lblSnackDrinkSubTotalActionPerformed(evt);
+            }
+		});
+		
+ 	    lblTotalPrice.setFont(new Font("Times New Roman",0,12));
+ 	    lblTotalPrice.setText("Total To Pay:");
+ 	    lblTotalPrice.setBounds(363,340,90,15);
+ 	    getContentPane().add(lblTotalPrice);
+ 	    
+ 	    lblActualTotalPrice.setFont(new Font("Times New Roman",Font.ITALIC,12));
+ 	    lblActualTotalPrice.setForeground(new Color(0, 102, 255));
+ 	    lblActualTotalPrice.setText("£0.00");
+ 	    lblActualTotalPrice.setBounds(450,340,90,15);
+ 	    getContentPane().add(lblActualTotalPrice);
+ 	    
+ 	    lblCashOrCard.setFont(new Font("Times New Roman",0,11));
+ 	    lblCashOrCard.setText("Would You Like To Pay By Cash Or Card:");
+ 	    lblCashOrCard.setBounds(360,367,240,25);
+ 	    getContentPane().add(lblCashOrCard);
+		
+ 	    
+ 	    radioBtnCash.setText("Cash");
+ 	    radioBtnCash.setBounds(370,395,73,20);
+ 	    getContentPane().add(radioBtnCash);
+ 	    radioBtnCash.setEnabled(false);
+ 	    
+ 	    radioBtnCard.setText("Card");
+ 	    radioBtnCard.setBounds(494,395,73,20);
+ 	    getContentPane().add(radioBtnCard);
+ 	    radioBtnCard.setEnabled(false);
+ 	    
+ 	   radioBtnCard.addActionListener(new ActionListener() {
+           public void actionPerformed(ActionEvent evt) {
+           		cardRdioBtnActionPerformed(evt);
+           }
+		});
+ 	    
+	   radioBtnCash.addActionListener(new ActionListener() {
+           public void actionPerformed(ActionEvent evt) {
+        	   cashRdioBtnActionPerformed(evt);
+           }
+		});
+		
  		movieFile.closeFile();
+ 		snacksFile.closeFile();
+ 		drinksFile.closeFile();
 
  	    
 	}
@@ -311,6 +480,13 @@ public class FirstPageGui extends JFrame{
 			comboIndex1 = cmbMovies.getSelectedIndex();
 	    	cmbAdultTicket.setEnabled(true);
 	    	cmbChildTicket.setEnabled(true);
+	    	
+	    	cmbSnacks.setEnabled(true);
+	    	cmbSnacksQty.setEnabled(true);
+	    	
+	    	cmbDrinks.setEnabled(true);
+	    	cmbDrinksQty.setEnabled(true);
+	    	
 			
 	    	for (int i=0; i < comboIndex1; i++){
 	    		lblImgPreview.setIcon(new ImageIcon(getClass().getResource(movieFile.displayFilmImage(comboIndex1)))); 
@@ -324,11 +500,27 @@ public class FirstPageGui extends JFrame{
 	     	   cmbAdultTicket.setSelectedIndex(comboIndex1);
 	     	   cmbChildTicket.setSelectedIndex(comboIndex1);
 	     	   
+	     	   cmbSnacks.setEnabled(false);
+	     	   cmbSnacks.setSelectedIndex(comboIndex1);
+	     	   cmbSnacksQty.setEnabled(false);
+	     	   cmbSnacksQty.setSelectedIndex(comboIndex1);
+	     	   
+	     	   cmbDrinks.setEnabled(false);
+	     	   cmbDrinks.setSelectedIndex(comboIndex1);
+	     	   cmbDrinksQty.setEnabled(false);
+	     	   cmbDrinksQty.setSelectedIndex(comboIndex1);
+	     	   
 	     	}else{
 		     	   cmbAdultTicket.setSelectedIndex(0);
 		     	   cmbChildTicket.setSelectedIndex(0);
+		     	   
+		     	   cmbSnacks.setSelectedIndex(0);
+		     	   cmbSnacksQty.setSelectedIndex(0);
+		     	   
+		     	   cmbDrinks.setSelectedIndex(0);
+		     	   cmbDrinksQty.setSelectedIndex(0);
 	     	}
-
+	    	
 
 	}
 	
@@ -357,6 +549,10 @@ public class FirstPageGui extends JFrame{
 		Color ratingColor = Color.getColor(colorFromFile);
 		lblActualAgeRating.setForeground(ratingColor);
 		lblActualAgeRating.setText(movieFile.displayFilmRating(comboIndex1));
+		
+    	if (movieFile.displayFilmRating(2) == "18"){
+	     	   cmbChildTicket.setEnabled(false);
+    	}
 	}
 		
 	
@@ -376,8 +572,8 @@ public class FirstPageGui extends JFrame{
 		String adultPrices = Double.toString(movieFile.displayAdultTicket(comboIndex1));
 		String childPrices = Double.toString(movieFile.displayChildTicket(comboIndex1));
 		
-		lblActualAdultTicket.setText("£" + adultPrices);
-		lblActualChildTicket.setText("£" + childPrices);
+		lblActualAdultTicket.setText("£" + adultPrices + "0");
+		lblActualChildTicket.setText("£" + childPrices + "0");
 		
 		if (comboIndex1 == 0){
 			lblActualAdultTicket.setText("£0.00");
@@ -386,6 +582,7 @@ public class FirstPageGui extends JFrame{
 	}
 	
 	private void lblSubTotalTicketActionPerformed(ActionEvent evt){
+		//TotalCalculations totalCalc = new TotalCalculations();
 		double adultQtyIndex = cmbAdultTicket.getSelectedIndex();
 		double childQtyIndex = cmbChildTicket.getSelectedIndex();
 		
@@ -395,13 +592,116 @@ public class FirstPageGui extends JFrame{
 		double cFilmPrice = movieFile.displayChildTicket(comboIndex1);
 		double childSubTtl = (cFilmPrice * childQtyIndex);
 		
-		double subTotalTickets = adultSubTtl + childSubTtl;
+		subTotalTickets = adultSubTtl + childSubTtl;
 		
 		String ticketSubTotal = Double.toString(subTotalTickets);
- 	    lblActualTicketSubTtl.setText("£" +ticketSubTotal+"0");
+
+	    lblActualTicketSubTtl.setText("£" +ticketSubTotal+"0");
+	    
+	    totalToPay = subTotalTickets + subTotalFood;
+	    strTotal = Double.toString(totalToPay);
+	    lblActualTotalPrice.setText("£"+strTotal+"0"); 
+	    	    
+	}
+	
+	
+	private void cmbTicketQtyActionPerformed(ActionEvent evt){
+		adultQtyIndex = cmbAdultTicket.getSelectedIndex();
+		childQtyIndex = cmbChildTicket.getSelectedIndex();
 		
+		if (adultQtyIndex == 0 && childQtyIndex==0){
+			cmbSnacks.setEnabled(false);
+			cmbDrinks.setEnabled(false);
+	    	radioBtnCard.setEnabled(false);
+	    	radioBtnCash.setEnabled(false);
+		}else{
+			cmbSnacks.setEnabled(true);
+			cmbDrinks.setEnabled(true);
+	    	radioBtnCard.setEnabled(true);
+	    	radioBtnCash.setEnabled(true);
+		}
 		
 	}
-}
+	
+	private void cmbSnacksAndDrinksActionPerformed(ActionEvent evt){
+		int snackIndex = cmbSnacks.getSelectedIndex();
+		int drinkIndex = cmbDrinks.getSelectedIndex();
+		
+		if (snackIndex == 0){
+			cmbSnacksQty.setEnabled(false);
+			cmbSnacksQty.setSelectedIndex(0);
+		}else{
+			cmbSnacksQty.setEnabled(true);
+			cmbSnacksQty.setSelectedIndex(1);
+		}
+		if (drinkIndex == 0){
+			cmbDrinksQty.setEnabled(false);
+			cmbDrinksQty.setSelectedIndex(0);
+		}else{
+			cmbDrinksQty.setEnabled(true);
+			cmbDrinksQty.setSelectedIndex(1);
+		}
+		
+	}
+	
+	
+	private void lblSnackDrinkSubTotalActionPerformed(ActionEvent evt){
+
+		int snackIndex = cmbSnacks.getSelectedIndex();
+		int snackQtyIndex = cmbSnacksQty.getSelectedIndex();
+		int drinkIndex = cmbDrinks.getSelectedIndex();
+		int drinkQtyIndex = cmbDrinksQty.getSelectedIndex();
+		
+		double snackPrice = snacksFile.displaySnackPrice(snackIndex);
+		double snackSubTtl = (snackPrice * snackQtyIndex);
+		
+		double drinkPrice = drinksFile.displayDrinkPrice(drinkIndex);
+		double drinkSubTtl = (drinkPrice * drinkQtyIndex);
+		
+		subTotalFood = drinkSubTtl + snackSubTtl;
+		
+		String foodSubTotal = Double.toString(subTotalFood);
+		
+		lblActualSDSubTotal.setText("£"+foodSubTotal+"0");
+		
+	    totalToPay = subTotalTickets + subTotalFood;
+	    strTotal = Double.toString(totalToPay);
+	    lblActualTotalPrice.setText("£"+strTotal+"0");
+		
+	}
+
+	
+	private void cardRdioBtnActionPerformed(ActionEvent evt){
+		if (radioBtnCard.isSelected()){
+			paymentMethod = "Card";
+		}
+	}
+	
+	private void cashRdioBtnActionPerformed(ActionEvent evt){
+		if(radioBtnCash.isSelected()){
+			paymentMethod = "Cash";
+		}
+	}
+	
+	
+//	public int getAdultTicketIndex(){
+//		return cmbAdultTicket.getSelectedIndex();
+//	}
+//	
+//	public int getChildTicketIndex(){
+//		return cmbChildTicket.getSelectedIndex();
+//	}
+//	
+//	public double getAdultTicketPrice(){
+//		return movieFile.displayAdultTicket(comboIndex1);
+//	}
+//	
+//	public double getChildTicketPrice(){
+//		return movieFile.displayChildTicket(comboIndex1);
+//	}
+	
+}	
+
+
 
 

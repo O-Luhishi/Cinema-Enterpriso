@@ -11,17 +11,17 @@ public class Film {
 	private String filmAddress;
 	private String filmRatingColour;
 	
-	public Film(String Film, String Age, double AdultTicket, double ChildTicket, int RoomCap, String Theatre, String TimeOfShow,
-			String FilmLocation, String ratingColour){
+	public Film(String film, String age, double adultTicket, double childTicket, int roomCap, String theatre, String showTime,
+			String filmLocation, String ratingColour){
 		
-		filmName = Film;
-		noSeats = RoomCap;
-		childTicketPrice = ChildTicket;
-		adultTicketPrice = AdultTicket;
-		ageRating = Age;
-		theatreNumber = Theatre;
-		timeOfShow = TimeOfShow;
-		filmAddress = FilmLocation;
+		filmName = film;
+		noSeats = roomCap;
+		childTicketPrice = childTicket;
+		adultTicketPrice = adultTicket;
+		ageRating = age;
+		theatreNumber = theatre;
+		timeOfShow = showTime;
+		filmAddress = filmLocation;
 		filmRatingColour = ratingColour;
 		
 	}

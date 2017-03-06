@@ -1,12 +1,13 @@
 To Do:
 
-	Done	> Rename double stuff in GUIFirstPage Class
-		> Set up JLabel for Sub Total
-		> Create class for calculation
-		> Implement Calculation
-		> Create Snacks&Drinks Class
-		> Set up JLabels and ComboBox's
-		> Create File Reader For It
-		> Create Calculations
 		> Make final touches for Reciept & Few other buttons
 		> Method to Update Available Tickets/Seats
+
+		> Class & Use Cass Diagrams
+
+To Fix:
+
+		> Film Rating Colour
+		> Calculations Classs
+		> Action Listener Methods - good practice?
+		> disabling child ticket if film 18

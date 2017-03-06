@@ -1,0 +1,5 @@
+Pick A Snack!; 0
+Large Popcorn £3.00; 3.00
+Small Popcorn £1.50; 1.50
+Large Nachos £3.00; 3.00
+Small Nachos £1.50; 1.50

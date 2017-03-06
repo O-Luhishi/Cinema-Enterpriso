@@ -1,5 +1,5 @@
-; ; 12; 9; 200; CW1-04; 9:00PM; Doctor_Strange.jpg; Color.ORANGE
-Doctor Strange; 12A; 7; 5; 150; CW-01-01; 9:00PM; Doctor_Strange.jpg; Color.ORANGE
+; ; 0; 0; 0; null; null; null; null
+Doctor Strange; 12A; 7.00; 5.00; 150; CW-01-01; 9:00PM; Doctor_Strange.jpg; Color.ORANGE
 T2 Trainspotting; 18; 7.00; 5.00; 250; CW-01-02; 9:00PM; T2Trainspotting.jpg; Color.RED
 Guardians Of The Galaxy; 12A; 5.00; 3.00; 250; CW-01-03; 9:00PM; GuardiansOfGalaxy.jpg; Color.GREEN
 10 Cloverfield Lane; 18; 5.00; 3.00; 75; CW1-01-04; 9:00PM; 10_Cloverfield_Lane.jpg; Color.RED
