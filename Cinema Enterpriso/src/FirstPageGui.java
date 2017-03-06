@@ -75,6 +75,9 @@ public class FirstPageGui extends JFrame{
 	private JRadioButton radioBtnCard;
 	private JRadioButton radioBtnCash;
 	
+	// Declaring Button's
+	private JButton btnOrderTickets;
+	
 	FilmFileReader movieFile = new FilmFileReader();
 	SnackFileReader snacksFile = new SnackFileReader();
 	DrinkFileReader drinksFile = new DrinkFileReader();
@@ -154,6 +157,9 @@ public class FirstPageGui extends JFrame{
 		ButtonGroup group = new ButtonGroup();
 		group.add(radioBtnCard);
 		group.add(radioBtnCash);
+		
+		// Button Init's
+		btnOrderTickets = new JButton();
 		
 		// Title Of The Program
 		lblCinemaTitle.setFont(new Font("Times New Roman",Font.BOLD,18));
@@ -466,10 +472,20 @@ public class FirstPageGui extends JFrame{
         	   cashRdioBtnActionPerformed(evt);
            }
 		});
+	   
 		
+		btnOrderTickets.setText("Place Order");
+		getContentPane().add(btnOrderTickets);
+		btnOrderTickets.setBounds(416,438,113,20);
+	   
+	   
+	   
  		movieFile.closeFile();
  		snacksFile.closeFile();
  		drinksFile.closeFile();
+ 		
+ 		
+
 
  	    
 	}
@@ -682,6 +698,11 @@ public class FirstPageGui extends JFrame{
 			paymentMethod = "Cash";
 		}
 	}
+	
+//	private void btnOrderActionPerformed(Action evt){
+//		ReceiptDialog RC = new ReceiptDialog();
+//		
+//	}
 	
 	
 //	public int getAdultTicketIndex(){
