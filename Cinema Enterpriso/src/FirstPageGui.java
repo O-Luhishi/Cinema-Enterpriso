@@ -13,7 +13,7 @@ import javax.swing.*;
 public class FirstPageGui extends JFrame{
 	
 	// Declaring Integers
-	private int comboIndex1;
+	public int comboIndex1;
 	private int adultQtyIndex;
 	private int childQtyIndex;
 	private double totalToPay;
@@ -23,6 +23,8 @@ public class FirstPageGui extends JFrame{
 
 	private String strTotal;
 	private String paymentMethod;
+
+	int testing;
 	
 	// Declaring JLabel 
 	private JLabel lblCinemaTitle;
@@ -57,7 +59,7 @@ public class FirstPageGui extends JFrame{
 
 	
 	// Declaring JComboBox's 
-	private JComboBox<String> cmbMovies;
+	JComboBox<String> cmbMovies;
 	private JComboBox<String> cmbAdultTicket;
 	private JComboBox<String> cmbChildTicket;
 	private JComboBox<String> cmbSnacks;
@@ -88,8 +90,10 @@ public class FirstPageGui extends JFrame{
 		super("Cinema Enterpriso");
 		getContentPane().setBackground(Color.LIGHT_GRAY);
 		getContentPane().setLayout(null);
+		createGui();
 		
-
+	}
+	public void createGui(){
 		movieFile.openFile();
 		movieFile.readFile();
 		
@@ -163,6 +167,7 @@ public class FirstPageGui extends JFrame{
 		
 		// Title Of The Program
 		lblCinemaTitle.setFont(new Font("Times New Roman",Font.BOLD,18));
+		lblCinemaTitle.setForeground(new Color(0,68,90));
 		lblCinemaTitle.setText("HUDDERSFIELD CINEMAX");
 		getContentPane().add(lblCinemaTitle);
 		lblCinemaTitle.setBounds(170,15,309,30);
@@ -190,6 +195,7 @@ public class FirstPageGui extends JFrame{
 	                lblMovieAgeRatingActionPerformed(evt);
 	                lblNoSeatsActionPerformed(evt);
 	                lblTicketPriceActionPerformed(evt);
+	                	                
 	            }
 	        });
 	    
@@ -412,13 +418,13 @@ public class FirstPageGui extends JFrame{
 		
 		cmbSnacks.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-            	cmbSnacksAndDrinksActionPerformed(evt);
+            	cmbSnacksActionPerformed(evt);
             }
 		});
 		
 		cmbDrinks.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-            	cmbSnacksAndDrinksActionPerformed(evt);
+            	cmbDrinksActionPerformed(evt);
             }
 		});
 		
@@ -478,19 +484,31 @@ public class FirstPageGui extends JFrame{
 		getContentPane().add(btnOrderTickets);
 		btnOrderTickets.setBounds(416,438,113,20);
 	   
+		
+		btnOrderTickets.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent evt){
+				btnOrderActionPerformed(evt);
+			}
+		});
 	   
 	   
  		movieFile.closeFile();
  		snacksFile.closeFile();
  		drinksFile.closeFile();
  		
- 		
 
+ 		
 
  	    
 	}
 	
+	public String getSelectedItem() {
+		return (String)cmbMovies.getSelectedItem();
+	}
+	
+	
 	private void cmbMoviesActionPerformed(ActionEvent evt) {
+
 
 			lblImgPreview.setText("");
 			comboIndex1 = cmbMovies.getSelectedIndex();
@@ -535,8 +553,8 @@ public class FirstPageGui extends JFrame{
 		     	   
 		     	   cmbDrinks.setSelectedIndex(0);
 		     	   cmbDrinksQty.setSelectedIndex(0);
-	     	}
-	    	
+			}
+	  
 
 	}
 	
@@ -639,10 +657,8 @@ public class FirstPageGui extends JFrame{
 		
 	}
 	
-	private void cmbSnacksAndDrinksActionPerformed(ActionEvent evt){
+	private void cmbSnacksActionPerformed(ActionEvent evt){
 		int snackIndex = cmbSnacks.getSelectedIndex();
-		int drinkIndex = cmbDrinks.getSelectedIndex();
-		
 		if (snackIndex == 0){
 			cmbSnacksQty.setEnabled(false);
 			cmbSnacksQty.setSelectedIndex(0);
@@ -650,6 +666,12 @@ public class FirstPageGui extends JFrame{
 			cmbSnacksQty.setEnabled(true);
 			cmbSnacksQty.setSelectedIndex(1);
 		}
+	}
+	
+	private void cmbDrinksActionPerformed(ActionEvent evt){
+
+		int drinkIndex = cmbDrinks.getSelectedIndex();
+
 		if (drinkIndex == 0){
 			cmbDrinksQty.setEnabled(false);
 			cmbDrinksQty.setSelectedIndex(0);
@@ -699,27 +721,20 @@ public class FirstPageGui extends JFrame{
 		}
 	}
 	
-//	private void btnOrderActionPerformed(Action evt){
-//		ReceiptDialog RC = new ReceiptDialog();
-//		
+	public void btnOrderActionPerformed(ActionEvent evt){
+		new ReceiptDialog();
+//		testing = cmbMovies.getSelectedIndex();
+
+		
+	}
+	
+//	public int returnMovieName(){
+//		testing = cmbMovies.getSelectedIndex();
+////		System.out.println(testing);
+//		return testing;
 //	}
 	
-	
-//	public int getAdultTicketIndex(){
-//		return cmbAdultTicket.getSelectedIndex();
-//	}
-//	
-//	public int getChildTicketIndex(){
-//		return cmbChildTicket.getSelectedIndex();
-//	}
-//	
-//	public double getAdultTicketPrice(){
-//		return movieFile.displayAdultTicket(comboIndex1);
-//	}
-//	
-//	public double getChildTicketPrice(){
-//		return movieFile.displayChildTicket(comboIndex1);
-//	}
+
 	
 }	
 
