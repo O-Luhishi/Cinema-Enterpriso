@@ -7,7 +7,7 @@ public class Main {
 			
 		FirstPageGui mainFrame = new FirstPageGui();
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		mainFrame.setSize(610, 570);
+		mainFrame.setSize(610, 528);
 		mainFrame.setVisible(true);
 		
 		

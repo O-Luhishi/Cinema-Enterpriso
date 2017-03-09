@@ -91,9 +91,19 @@ public class FirstPageGui extends JFrame{
 		getContentPane().setBackground(Color.LIGHT_GRAY);
 		getContentPane().setLayout(null);
 		createGui();
+
+
 		
 	}
 	public void createGui(){
+		
+		JPanel firstPanel = new JPanel();
+		firstPanel.setBounds(0,0,610,504);
+		getContentPane().add(firstPanel);
+		firstPanel.setBackground(Color.LIGHT_GRAY);
+		firstPanel.setLayout(null);
+		
+		
 		movieFile.openFile();
 		movieFile.readFile();
 		
@@ -169,20 +179,20 @@ public class FirstPageGui extends JFrame{
 		lblCinemaTitle.setFont(new Font("Times New Roman",Font.BOLD,18));
 		lblCinemaTitle.setForeground(new Color(0,68,90));
 		lblCinemaTitle.setText("HUDDERSFIELD CINEMAX");
-		getContentPane().add(lblCinemaTitle);
+		firstPanel.add(lblCinemaTitle);
 		lblCinemaTitle.setBounds(170,15,309,30);
 		
 		// Movie Selection
 		lblMovieSelection.setFont(new Font("Times New Roman",0,12));
 		lblMovieSelection.setText("Select Movie:");
-		getContentPane().add(lblMovieSelection);
+		firstPanel.add(lblMovieSelection);
 		lblMovieSelection.setBounds(18,72,80,15);
 		
 		
 		 //Combo Box For Movie Selection
 		cmbMovies.setModel(new DefaultComboBoxModel<String>(movieFile.displayAllFilms()));
 		
-		getContentPane().add(cmbMovies);
+		firstPanel.add(cmbMovies);
 		cmbMovies.setBounds(108,67,230,25);
 
 		
@@ -208,7 +218,7 @@ public class FirstPageGui extends JFrame{
 		lblImgPreview.setText("SELECT A MOVIE");
 		lblImgPreview.setHorizontalAlignment(SwingConstants.CENTER);
 		lblImgPreview.setVerticalAlignment(SwingConstants.CENTER);
-		getContentPane().add(lblImgPreview);
+		firstPanel.add(lblImgPreview);
 		
 		lblImgPreview.setBorder(BorderFactory.createEtchedBorder());
 		
@@ -216,11 +226,11 @@ public class FirstPageGui extends JFrame{
 		lblAgeRating.setFont(new Font ("Times New Roman", Font.BOLD, 10));
 		lblAgeRating.setForeground(new Color(0, 102, 255));
 		lblAgeRating.setText("Age Rating: ");
-		getContentPane().add(lblAgeRating);
+		firstPanel.add(lblAgeRating);
 		lblAgeRating.setBounds(433,314,110,15);
 		
 		lblActualAgeRating.setFont(new Font ("Times New Roman", Font.BOLD, 12));
-		getContentPane().add(lblActualAgeRating);
+		firstPanel.add(lblActualAgeRating);
 		lblActualAgeRating.setBounds(503,314,110,15);
 		
 		
@@ -228,43 +238,43 @@ public class FirstPageGui extends JFrame{
 		lblTheatre_Time.setFont(new Font("Times New Roman",Font.BOLD,10));
 		lblTheatre_Time.setForeground(new Color(0, 102, 255));
 		lblTheatre_Time.setText("Theatre No & Time");
-		getContentPane().add(lblTheatre_Time);
+		firstPanel.add(lblTheatre_Time);
 		lblTheatre_Time.setBounds(18,99,110,15);
 		
-		getContentPane().add(first_Separator);
+		firstPanel.add(first_Separator);
 		first_Separator.setBounds(128,109,210,10);
 		
 		// Setting Up Theater Number Labels
 		lblTheatreNo.setFont(new Font("Times New Roman",0,12));
 		lblTheatreNo.setText("Theatre No:"); 
-		getContentPane().add(lblTheatreNo);
+		firstPanel.add(lblTheatreNo);
 		lblTheatreNo.setBounds(18,120,80,15);
 		
  	    lblActualTheatreNo.setFont(new Font("Times New Roman", Font.ITALIC,12));
  	    lblActualTheatreNo.setForeground(new Color(0, 102, 255));
- 	    getContentPane().add(lblActualTheatreNo);
+ 	    firstPanel.add(lblActualTheatreNo);
  	    lblActualTheatreNo.setBounds(108,118,230,20);
 		
 		// Time of Show
 		lblTimeOfShow.setFont(new Font("Times New Roman",0,12));
 		lblTimeOfShow.setText("Time Of Show:");
-		getContentPane().add(lblTimeOfShow);
+		firstPanel.add(lblTimeOfShow);
 		lblTimeOfShow.setBounds(18,150,90,15);
 		
 		lblActualTimeOfShow.setFont(new Font("Times New Roman",Font.ITALIC,12));
 		lblActualTimeOfShow.setForeground(new Color(0, 102, 255));
-		getContentPane().add(lblActualTimeOfShow);
+		firstPanel.add(lblActualTimeOfShow);
 		lblActualTimeOfShow.setBounds(118,147,100,20);
 		
 		// Number Of Seats Available
 		lblNoSeats.setFont(new Font("Times New Roman",0,12));
 		lblNoSeats.setText("No. Seats: ");
-		getContentPane().add(lblNoSeats);
+		firstPanel.add(lblNoSeats);
 		lblNoSeats.setBounds(190,120,80,15);
 		
 		lblActualNoSeats.setFont(new Font("Times New Roman",Font.ITALIC,12));
 		lblActualNoSeats.setForeground(new Color(0, 102, 255));
-		getContentPane().add(lblActualNoSeats);
+		firstPanel.add(lblActualNoSeats);
 		lblActualNoSeats.setBounds(257,118,51,20);
 
 		
@@ -272,44 +282,44 @@ public class FirstPageGui extends JFrame{
 		lblTicketHeading.setFont(new Font("Times New Roman", Font.BOLD,10));
 		lblTicketHeading.setForeground(new Color(0, 102, 255));
 		lblTicketHeading.setText("Ticket Pricing");
-		getContentPane().add(lblTicketHeading);
+		firstPanel.add(lblTicketHeading);
 		lblTicketHeading.setBounds(18,177,110,15);
 		
-		getContentPane().add(second_Separator);
+		firstPanel.add(second_Separator);
 		second_Separator.setBounds(98,187,240,10);
 		
 		// Adult Tickets
 		lblAdultTicket.setFont(new Font("Times New Roman",0,12));
 		lblAdultTicket.setText("Adult Ticket: ");
-		getContentPane().add(lblAdultTicket);
+		firstPanel.add(lblAdultTicket);
 		lblAdultTicket.setBounds(18,207,80,15);
 		
 		lblActualAdultTicket.setFont(new Font("Times New Roman",Font.ITALIC,12));
 		lblActualAdultTicket.setForeground(new Color(0, 102, 255));
-		getContentPane().add(lblActualAdultTicket);
+		firstPanel.add(lblActualAdultTicket);
 		lblActualAdultTicket.setBounds(108,204,51,20);
 		
 		
 		// Child Tickets
 		lblChildTicket.setFont(new Font("Times New Roman",0,12));
 		lblChildTicket.setText("Child Ticket: ");
-		getContentPane().add(lblChildTicket);
+		firstPanel.add(lblChildTicket);
 		lblChildTicket.setBounds(18,244,80,15);
 		
 		lblActualChildTicket.setFont(new Font("Times New Roman",Font.ITALIC,12));
 		lblActualChildTicket.setForeground(new Color(0, 102, 255));
-		getContentPane().add(lblActualChildTicket);
+		firstPanel.add(lblActualChildTicket);
 		lblActualChildTicket.setBounds(108,241,51,20);
 		
 		// Quantity & Combobox's For Tickets
 		lblAdultQty.setFont(new Font("Times New Roman",0,12));
 		lblAdultQty.setText("Quantity: ");
-		getContentPane().add(lblAdultQty);
+		firstPanel.add(lblAdultQty);
 		lblAdultQty.setBounds(208,207,80,15);
 		
 		lblChildQty.setFont(new Font("Times New Roman",0,12));
 		lblChildQty.setText("Quantity: ");
-		getContentPane().add(lblChildQty);
+		firstPanel.add(lblChildQty);
 		lblChildQty.setBounds(208,242,80,15);
 		
 				
@@ -317,14 +327,14 @@ public class FirstPageGui extends JFrame{
 
 		cmbAdultTicket.setModel(new DefaultComboBoxModel<String>(new String[]{"0","1","2","3",
 				"4","5","6","7","8"}));
-		getContentPane().add(cmbAdultTicket);
+		firstPanel.add(cmbAdultTicket);
 		cmbAdultTicket.setBounds(276,205,40,20);
 		cmbAdultTicket.setEnabled(false);
 		
 		
 		cmbChildTicket.setModel(new DefaultComboBoxModel<String>(new String[]{"0","1","2","3",
 				"4","5","6","7","8"}));
-		getContentPane().add(cmbChildTicket);
+		firstPanel.add(cmbChildTicket);
 		cmbChildTicket.setBounds(276,239,40,20);
  	    cmbChildTicket.setEnabled(false);
  	    
@@ -333,24 +343,24 @@ public class FirstPageGui extends JFrame{
  	    lblTicketSubTtl.setFont(new Font("Times New Roman",0,12));
  	    lblTicketSubTtl.setText("Sub Total:");
  	    lblTicketSubTtl.setBounds(105,272,90,15);
- 	    getContentPane().add(lblTicketSubTtl);
+ 	    firstPanel.add(lblTicketSubTtl);
  	    
  	    lblActualTicketSubTtl.setFont(new Font("Times New Roman",Font.ITALIC,12));
  	    lblActualTicketSubTtl.setForeground(new Color(0, 102, 255));
  	    lblActualTicketSubTtl.setText("£0.00");
  	    lblActualTicketSubTtl.setBounds(170,272,90,15);
- 	    getContentPane().add(lblActualTicketSubTtl);
+ 	    firstPanel.add(lblActualTicketSubTtl);
 
  	    lblSnacks_Drinks.setFont(new Font("Times New Roman",Font.BOLD,10));
 		lblSnacks_Drinks.setForeground(new Color(0, 102, 255));
  	    lblSnacks_Drinks.setText("Snacks & Drinks");
  	    lblSnacks_Drinks.setBounds(18,300,123,15);
- 	    getContentPane().add(lblSnacks_Drinks);
+ 	    firstPanel.add(lblSnacks_Drinks);
 
-		getContentPane().add(third_Separator);
+		firstPanel.add(third_Separator);
 		third_Separator.setBounds(115,309,223,10);
  	    
-		getContentPane().add(fourth_Separator);
+		firstPanel.add(fourth_Separator);
 		fourth_Separator.setBounds(350,322,13,176);
 		
 
@@ -371,35 +381,35 @@ public class FirstPageGui extends JFrame{
 		
 		 //Combo Box For Snacks Selection
 		cmbSnacks.setModel(new DefaultComboBoxModel<String>(snacksFile.displayAllSnacks()));
-		getContentPane().add(cmbSnacks);
+		firstPanel.add(cmbSnacks);
 		cmbSnacks.setBounds(18,335,177,25);
 		cmbSnacks.setEnabled(false);
 		
 		lblSnacksQty.setFont(new Font("Times New Roman",0,12));
 		lblSnacksQty.setText("Quantity: ");
-		getContentPane().add(lblSnacksQty);
+		firstPanel.add(lblSnacksQty);
 		lblSnacksQty.setBounds(208,338,80,15);
 		
 		cmbSnacksQty.setModel(new DefaultComboBoxModel<String>(new String[]{"0","1","2","3",
 				"4","5","6","7","8"}));
-		getContentPane().add(cmbSnacksQty);
+		firstPanel.add(cmbSnacksQty);
 		cmbSnacksQty.setBounds(276,336,40,20);
 		cmbSnacksQty.setEnabled(false);
 		
 		 //Combo Box For Drinks Selection
 		cmbDrinks.setModel(new DefaultComboBoxModel<String>(drinksFile.displayAllDrinks()));
-		getContentPane().add(cmbDrinks);
+		firstPanel.add(cmbDrinks);
 		cmbDrinks.setBounds(18,390,177,25);
 		cmbDrinks.setEnabled(false);
 		
 		lblDrinksQty.setFont(new Font("Times New Roman",0,12));
 		lblDrinksQty.setText("Quantity: ");
-		getContentPane().add(lblDrinksQty);
+		firstPanel.add(lblDrinksQty);
 		lblDrinksQty.setBounds(208,393,80,15);
 		
 		cmbDrinksQty.setModel(new DefaultComboBoxModel<String>(new String[]{"0","1","2","3",
 				"4","5","6","7","8"}));
-		getContentPane().add(cmbDrinksQty);
+		firstPanel.add(cmbDrinksQty);
 		cmbDrinksQty.setBounds(276,391,40,20);
 		cmbDrinksQty.setEnabled(false);
 		
@@ -407,13 +417,13 @@ public class FirstPageGui extends JFrame{
  	    lblSDSubTotal.setFont(new Font("Times New Roman",0,12));
  	    lblSDSubTotal.setText("Sub Total:");
  	    lblSDSubTotal.setBounds(105,425,90,15);
- 	    getContentPane().add(lblSDSubTotal);
+ 	    firstPanel.add(lblSDSubTotal);
  	    
  	    lblActualSDSubTotal.setFont(new Font("Times New Roman",Font.ITALIC,12));
  	    lblActualSDSubTotal.setForeground(new Color(0, 102, 255));
  	    lblActualSDSubTotal.setText("£0.00");
  	    lblActualSDSubTotal.setBounds(172,425,90,15);
- 	    getContentPane().add(lblActualSDSubTotal);
+ 	    firstPanel.add(lblActualSDSubTotal);
 		
 		
 		cmbSnacks.addActionListener(new ActionListener() {
@@ -443,28 +453,28 @@ public class FirstPageGui extends JFrame{
  	    lblTotalPrice.setFont(new Font("Times New Roman",0,12));
  	    lblTotalPrice.setText("Total To Pay:");
  	    lblTotalPrice.setBounds(363,340,90,15);
- 	    getContentPane().add(lblTotalPrice);
+ 	    firstPanel.add(lblTotalPrice);
  	    
  	    lblActualTotalPrice.setFont(new Font("Times New Roman",Font.ITALIC,12));
  	    lblActualTotalPrice.setForeground(new Color(0, 102, 255));
  	    lblActualTotalPrice.setText("£0.00");
  	    lblActualTotalPrice.setBounds(450,340,90,15);
- 	    getContentPane().add(lblActualTotalPrice);
+ 	    firstPanel.add(lblActualTotalPrice);
  	    
  	    lblCashOrCard.setFont(new Font("Times New Roman",0,11));
  	    lblCashOrCard.setText("Would You Like To Pay By Cash Or Card:");
  	    lblCashOrCard.setBounds(360,367,240,25);
- 	    getContentPane().add(lblCashOrCard);
+ 	    firstPanel.add(lblCashOrCard);
 		
  	    
  	    radioBtnCash.setText("Cash");
  	    radioBtnCash.setBounds(370,395,73,20);
- 	    getContentPane().add(radioBtnCash);
+ 	    firstPanel.add(radioBtnCash);
  	    radioBtnCash.setEnabled(false);
  	    
  	    radioBtnCard.setText("Card");
  	    radioBtnCard.setBounds(494,395,73,20);
- 	    getContentPane().add(radioBtnCard);
+ 	    firstPanel.add(radioBtnCard);
  	    radioBtnCard.setEnabled(false);
  	    
  	   radioBtnCard.addActionListener(new ActionListener() {
@@ -481,7 +491,7 @@ public class FirstPageGui extends JFrame{
 	   
 		
 		btnOrderTickets.setText("Place Order");
-		getContentPane().add(btnOrderTickets);
+		firstPanel.add(btnOrderTickets);
 		btnOrderTickets.setBounds(416,438,113,20);
 	   
 		
