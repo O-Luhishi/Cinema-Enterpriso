@@ -44,9 +44,8 @@ public class ReceiptDialog extends JFrame{
 	}
 	
 	public void populateReceiptUI(){
-		filmName = one.testing;
 
-		System.out.println(filmName);
+//		System.out.println(one.returnMovieName());
 		
 		
 		// Initialising JLabels
@@ -78,7 +77,7 @@ public class ReceiptDialog extends JFrame{
 		
 		lblActualFilmName.setFont(new Font("Times New Roman",Font.BOLD,11));
 		lblActualFilmName.setForeground(new Color(0, 102, 255));
-		lblActualFilmName.setText("Avengers");
+		lblActualFilmName.setText(one.returnMovieName() + "£");
 		getContentPane().add(lblActualFilmName);
 		lblActualFilmName.setBounds(59,69,77,15);
 		

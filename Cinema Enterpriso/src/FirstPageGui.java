@@ -24,7 +24,7 @@ public class FirstPageGui extends JFrame{
 	private String strTotal;
 	private String paymentMethod;
 
-	int testing;
+	
 	
 	// Declaring JLabel 
 	private JLabel lblCinemaTitle;
@@ -520,7 +520,7 @@ public class FirstPageGui extends JFrame{
 	    	
 	    	cmbDrinks.setEnabled(true);
 	    	cmbDrinksQty.setEnabled(true);
-	    	
+
 			
 	    	for (int i=0; i < comboIndex1; i++){
 	    		lblImgPreview.setIcon(new ImageIcon(getClass().getResource(movieFile.displayFilmImage(comboIndex1)))); 
@@ -555,7 +555,7 @@ public class FirstPageGui extends JFrame{
 		     	   cmbDrinksQty.setSelectedIndex(0);
 			}
 	  
-
+	    	returnMovieName();
 	}
 	
 
@@ -723,16 +723,16 @@ public class FirstPageGui extends JFrame{
 	
 	public void btnOrderActionPerformed(ActionEvent evt){
 		new ReceiptDialog();
-//		testing = cmbMovies.getSelectedIndex();
+	
 
 		
 	}
 	
-//	public int returnMovieName(){
-//		testing = cmbMovies.getSelectedIndex();
-////		System.out.println(testing);
-//		return testing;
-//	}
+	public int returnMovieName(){
+		int Sel = cmbMovies.getSelectedIndex();
+
+		return Sel;
+	}
 	
 
 	
