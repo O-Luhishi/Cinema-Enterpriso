@@ -47,6 +47,10 @@ public class DrinkFileReader {
 		return toRet;
 	}
 	
+	public String displayDrink(int index){
+		return drinks.get(index).getDrinkName();
+	}
+	
 	public double displayDrinkPrice(int index){
 		return drinks.get(index).getDrinkPrice();
 	}

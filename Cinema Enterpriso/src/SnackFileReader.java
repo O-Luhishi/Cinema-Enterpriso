@@ -47,6 +47,10 @@ public class SnackFileReader {
 		return toRet;
 	}
 	
+	public String displaySnack(int index){
+		return snacks.get(index).getSnackName();
+	}
+	
 	public double displaySnackPrice(int index){
 		return snacks.get(index).getSnackPrice();
 	}
