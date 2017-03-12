@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicBorders.RadioButtonBorder;
 
 /**
  * First page for Cinema Enterpriso GUI
@@ -19,8 +20,8 @@ public class FirstPageGui extends JFrame{
 	private double subTotalFood;
 
 	
-	String ticketSubTotal;
-
+	private String ticketSubTotal;
+	private String seats;
 	private String strTotal;
 	private String paymentMethod;
 
@@ -146,7 +147,7 @@ public class FirstPageGui extends JFrame{
 		
 		drinksFile.openFile();
 		drinksFile.readFile();
-		ButtonGroup group = new ButtonGroup();
+		ButtonGroup radioGroup = new ButtonGroup();
 		
 		secondPanel = new JPanel();
 		secondPanel.setVisible(false);
@@ -243,8 +244,8 @@ public class FirstPageGui extends JFrame{
 		radioBtnCash.setBackground(Color.LIGHT_GRAY);
 		radioBtnCard = new JRadioButton();
 		radioBtnCard.setBackground(Color.LIGHT_GRAY);
-		group.add(radioBtnCard);
-		group.add(radioBtnCash);
+		radioGroup.add(radioBtnCard);
+		radioGroup.add(radioBtnCash);
 
 		// Button Init's
 		btnOrderTickets = new JButton();
@@ -673,7 +674,7 @@ public class FirstPageGui extends JFrame{
 		lblSnackName.setFont(new Font("Times New Roman",0,12));
 		lblSnackName.setForeground(Color.WHITE);
 		secondPanel.add(lblSnackName);
-		lblSnackName.setBounds(18,222,150,15);
+		lblSnackName.setBounds(18,222,218,15);
 		
 		lblSnackQty.setFont(new Font("Times New Roman",Font.BOLD,12));
  	    lblSnackQty.setForeground(new Color(0, 102, 255));
@@ -684,7 +685,7 @@ public class FirstPageGui extends JFrame{
 		lblDrinkName.setFont(new Font("Times New Roman",0,12));
 		lblDrinkName.setForeground(Color.WHITE);
 		secondPanel.add(lblDrinkName);
-		lblDrinkName.setBounds(18,252,150,15);
+		lblDrinkName.setBounds(18,252,218,15);
 		
 		lblDrinkQty.setFont(new Font("Times New Roman",Font.BOLD,12));
  	    lblDrinkQty.setForeground(new Color(0, 102, 255));
@@ -825,8 +826,8 @@ public class FirstPageGui extends JFrame{
 	
 	
 	private void lblNoSeatsActionPerformed(ActionEvent evt){
-		String Seats = Integer.toString(movieFile.displayNumberOfSetas(comboIndex1));
-		lblActualNoSeats.setText(Seats);
+		seats = Integer.toString(movieFile.displayNumberOfSetas(comboIndex1));
+		lblActualNoSeats.setText(seats);
 		
 		if (comboIndex1 == 0){
 			lblActualNoSeats.setText("");
@@ -971,30 +972,24 @@ public class FirstPageGui extends JFrame{
 		lblATicketQty.setText("x"+adultQtyIndex);
 		lblActualChildPrice.setText("£"+movieFile.displayChildTicket(comboIndex1)+"0");
 		lblCTicketQty.setText("x"+childQtyIndex);
-		if (snackIndex != 0){
+		if (snackIndex==0){
+			lblSnackName.setText("No Snacks Purchased With Ticket/s");
+		}else{
 			lblSnackName.setText(snacksFile.displaySnack(snackIndex));
 			lblSnackQty.setText("x"+snackQtyIndex);
-			if (drinkIndex == 0){
-				lblMthdOfPayment.setBounds(18,252,150,15);
-				lblActualMtdPayment.setBounds(227,247,87,25);
 		}
-		if (drinkIndex!=0){
+		if (drinkIndex == 0){
+			lblDrinkName.setText("No Drinks Purchased With Ticket/s");
+		}else{
 			lblDrinkName.setText(drinksFile.displayDrink(drinkIndex));
 			lblDrinkQty.setText("x"+drinkQtyIndex);
-			if (snackIndex == 0){
-				lblDrinkName.setBounds(18,222,150,15);
-				lblDrinkQty.setBounds(227,217,87,25);
-				lblMthdOfPayment.setBounds(18,252,150,15);
-				lblActualMtdPayment.setBounds(227,247,87,25);
-			}
 		}
-		}else{
-			lblMthdOfPayment.setBounds(18,222,150,15);
-			lblActualMtdPayment.setBounds(227,217,87,25);
-		}
+
 		lblActualMtdPayment.setText(paymentMethod);
 		
  	    lblActualTotalPaid.setText("£"+strTotal+"0");
+		int updatedSeats = movieFile.displayNumberOfSetas(comboIndex1) - (adultQtyIndex + childQtyIndex);
+		seats = Integer.toString(updatedSeats);
 		
 	}
 	
@@ -1002,7 +997,15 @@ public class FirstPageGui extends JFrame{
 		setSize(610,528);
 		firstPanel.setVisible(true);
 		secondPanel.setVisible(false);
-		cmbMovies.setSelectedIndex(0);
+		lblActualNoSeats.setText(seats);
+		cmbAdultTicket.setSelectedIndex(0);
+		cmbChildTicket.setSelectedIndex(0);
+		cmbDrinks.setSelectedIndex(0);
+		cmbSnacks.setSelectedIndex(0);
+		btnOrderTickets.setEnabled(false);
+		radioBtnCard.setSelected(false);
+		radioBtnCash.setSelected(false);
+		;
 		
 	}
 	
