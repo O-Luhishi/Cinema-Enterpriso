@@ -25,6 +25,11 @@ public class FirstPageGui extends JFrame{
 	private String strTotal;
 	private String paymentMethod;
 
+	final static int interval = 100;
+	int endOfTime;
+	Timer time;
+	JProgressBar progrss;
+
 	public int adultQtyIndex;
 	public int childQtyIndex;
 
@@ -149,6 +154,16 @@ public class FirstPageGui extends JFrame{
 		drinksFile.readFile();
 		ButtonGroup radioGroup = new ButtonGroup();
 
+		JPanel thirdPanel = new JPanel();
+		thirdPanel.setLocation(0, 0);
+		getContentPane().add(thirdPanel);
+		thirdPanel.setVisible(false);
+		thirdPanel.setSize(417,235);
+		thirdPanel.setBackground(Color.DARK_GRAY);
+		thirdPanel.setLayout(null);
+
+		
+
 		firstPanel = new JPanel();
 
 
@@ -157,6 +172,7 @@ public class FirstPageGui extends JFrame{
 		getContentPane().add(firstPanel);
 		firstPanel.setBackground(Color.LIGHT_GRAY);
 		firstPanel.setLayout(null);
+
 
 
 		// Label Init's
@@ -539,13 +555,6 @@ public class FirstPageGui extends JFrame{
 		btnOrderTickets.setEnabled(false);
 
 
-		btnOrderTickets.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent evt){
-				btnOrderActionPerformed(evt);
-
-			}
-		});
-
 		secondPanel = new JPanel();
 		secondPanel.setVisible(false);
 
@@ -719,9 +728,51 @@ public class FirstPageGui extends JFrame{
 		secondPanel.add(btnReturnMain);
 		btnReturnMain.setBounds(420,322,113,20);
 
+
 		btnReturnMain.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent evt){
 				btnNewOrderActionPerformed(evt);
+
+			}
+		});
+
+
+		btnOrderTickets.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent evt){
+				setSize(417,235);
+				firstPanel.setVisible(false);
+				thirdPanel.setVisible(true);
+				endOfTime =0;
+				time.start();
+
+			}
+		});
+		
+		progrss = new JProgressBar(0,20);
+		progrss.setValue(0);
+		progrss.setStringPainted(true);
+
+		thirdPanel.add(progrss);
+		progrss.setBounds(94,83,221,50);
+
+		JLabel lblLoading = new JLabel("Loading....");
+		lblLoading.setForeground(Color.WHITE);
+		lblLoading.setBounds(167, 48, 88, 30);
+		thirdPanel.add(lblLoading);
+
+
+		time = new Timer(interval, new ActionListener() {
+
+			public void actionPerformed(ActionEvent evt) {
+				if (endOfTime == 20){
+					time.stop();
+					thirdPanel.setVisible(false);
+					btnOrderActionPerformed(evt);
+
+				}else{
+					endOfTime++;
+					progrss.setValue(endOfTime);
+				}
 
 			}
 		});
@@ -1018,7 +1069,6 @@ public class FirstPageGui extends JFrame{
 		;
 
 	}
-
 }	
 
 
