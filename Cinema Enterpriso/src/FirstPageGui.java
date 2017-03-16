@@ -867,17 +867,23 @@ public class FirstPageGui extends JFrame{
 		String colorFromFile = movieFile.displayFilmRatingColour(comboIndex1);
 		Color ratingColor = Color.getColor(colorFromFile);
 		lblActualAgeRating.setForeground(ratingColor);
-		lblActualAgeRating.setText(movieFile.displayFilmRating(comboIndex1));
-
-		if (movieFile.displayFilmRating(2) == "18"){
+		
+		String ratingF = movieFile.displayFilmRating(comboIndex1);
+		String eight = "18";
+		if (eight == ratingF){
 			cmbChildTicket.setEnabled(false);
+			//System.out.println(ratingF);
+		}else{
+		//	System.out.println(ratingF);
 		}
+		lblActualAgeRating.setText(ratingF);
+
 	}
 
 
 
 	private void lblNoSeatsActionPerformed(ActionEvent evt){
-		seats = Integer.toString(movieFile.displayNumberOfSetas(comboIndex1));
+		seats = Integer.toString(movieFile.displayNumberOfSeats(comboIndex1));
 		lblActualNoSeats.setText(seats);
 
 		if (comboIndex1 == 0){
@@ -1049,7 +1055,7 @@ public class FirstPageGui extends JFrame{
 		lblActualMtdPayment.setText(paymentMethod);
 
 		lblActualTotalPaid.setText("£"+strTotal+"0");
-		int updatedSeats = movieFile.displayNumberOfSetas(comboIndex1) - (adultQtyIndex + childQtyIndex);
+		int updatedSeats = movieFile.displayNumberOfSeats(comboIndex1) - (adultQtyIndex + childQtyIndex);
 		seats = Integer.toString(updatedSeats);
 
 	}

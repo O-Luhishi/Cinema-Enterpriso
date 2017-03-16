@@ -73,7 +73,7 @@ public class FilmFileReader {
 		return movie.get(index).getChildTicketPrice();
 	}
 	
-	public int displayNumberOfSetas(int index){
+	public int displayNumberOfSeats(int index){
 		return movie.get(index).getRoomCapacity();
 	}
 	
