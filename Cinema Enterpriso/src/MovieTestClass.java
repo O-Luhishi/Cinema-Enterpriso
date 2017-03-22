@@ -14,7 +14,7 @@ public class MovieTestClass {
 		testerClass.openFile();
 		testerClass.readFile();
 		String result = testerClass.displayFilmName(2);
-		assertEquals("T2 Trainspotting 22/05/17", result);
+		assertEquals("T2 Trainspotting", result);
 	}
 
 	@Test
@@ -71,6 +71,14 @@ public class MovieTestClass {
 		testerClass.readFile();
 		String result = testerClass.displayFilmImage(2);
 		assertEquals("T2Trainspotting.jpg",result);
+	}
+	
+	@Test
+	public void testDisplayFilmDate() {
+		testerClass.openFile();
+		testerClass.readFile();
+		String result = testerClass.displayFilmDate(2);
+		assertEquals("22/05/17",result);
 	}
 
 

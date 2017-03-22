@@ -5,7 +5,9 @@ import javax.swing.plaf.basic.BasicBorders.RadioButtonBorder;
 
 /**
  * First page for Cinema Enterpriso GUI
- * Opens a page which can allow user to enter data
+ * Opens a page which can allow user to enter data.
+ * The Data consists of Selecting Movie Name - for them then to select things such as snacks and drinks
+ * New Features such as PullMan Seats and Waiter Services Available to be selected.
  * 
  * @author Osama Luhishi
  *
@@ -15,21 +17,6 @@ public class FirstPageGui extends JFrame{
 
 	// Declaring Integers
 	public int comboIndex1;
-	private double totalToPay;
-	private double subTotalTickets;
-	private double subTotalFood;
-
-
-	private String ticketSubTotal;
-	private String seats;
-	private String strTotal;
-	private String paymentMethod;
-
-	final static int interval = 100;
-	int endOfTime;
-	Timer time;
-	JProgressBar progrss;
-
 	public int adultQtyIndex;
 	public int childQtyIndex;
 
@@ -38,6 +25,30 @@ public class FirstPageGui extends JFrame{
 
 	public int drinkIndex;
 	public int drinkQtyIndex;
+
+
+	// Decaring Doubles
+	private double totalToPay;
+	private double subTotalTickets;
+	private double subTotalFood;
+	private double subTotalSeatType;
+	private double cbWaiterPrice;
+	private double cashPaid;
+	private double changeReturned;
+
+
+	// Declaring Strings
+	private String ticketSubTotal;
+	private String seats;
+	private String strTotal;
+	private String paymentMethod;
+	private String change;
+
+	// Progress Bar Initialisation
+	final static int interval = 100;
+	int endOfTime;
+	Timer time;
+	JProgressBar progrss;
 
 
 	// Declaring JLabel For Main UI
@@ -52,6 +63,8 @@ public class FirstPageGui extends JFrame{
 	private JLabel lblTicketHeading;
 	private JLabel lblAgeRating;
 	private JLabel lblActualAgeRating;
+	private JLabel lblDateOfFilm;
+	private JLabel lblActualDateOfFilm;
 	private JLabel lblNoSeats;
 	private JLabel lblActualNoSeats;
 	private JLabel lblAdultTicket;
@@ -70,6 +83,10 @@ public class FirstPageGui extends JFrame{
 	private JLabel lblTotalPrice;
 	private JLabel lblActualTotalPrice;
 	private JLabel lblCashOrCard;
+	private JLabel lblExtraServices;
+	private JLabel lblSeatType;
+	private JLabel lblWaiterService;
+	private JLabel lblBackgroundPic;
 
 	// Declaring JLabel for JPanel 2 - Aka Receipt
 	private JLabel lblReceiptTitle;
@@ -95,6 +112,10 @@ public class FirstPageGui extends JFrame{
 	private JLabel lblActualMtdPayment;
 	private JLabel lblTotalPaid;
 	private JLabel lblActualTotalPaid;
+	private JLabel lblActualDateOfShow;
+	private JLabel lblActualSeatType;
+	private JLabel lblActualWaiterService;
+
 
 
 
@@ -107,30 +128,37 @@ public class FirstPageGui extends JFrame{
 	private JComboBox<String> cmbSnacksQty;
 	private JComboBox<String> cmbDrinks;
 	private JComboBox<String> cmbDrinksQty;
+	private JComboBox<String> cmbSeatType;
 
 	// Declaring JSeparator's
 	private JSeparator first_Separator;
 	private JSeparator second_Separator;
 	private JSeparator third_Separator;
 	private JSeparator fourth_Separator;
+	private JSeparator fifth_Separator;
 
 	// Declaring Radio Button's
 	private JRadioButton radioBtnCard;
 	private JRadioButton radioBtnCash;
 
+	//Declaring Check Box's
+	private JCheckBox cbWaiterService;
+
 	// Declaring Button's
 	private JButton btnOrderTickets;
 	private JButton btnReturnMain;
 
+	// Calling Reader Classes Which Read Data From Txt File And Store the Date Into An Array
 	FilmFileReader movieFile = new FilmFileReader();
 	SnackFileReader snacksFile = new SnackFileReader();
 	DrinkFileReader drinksFile = new DrinkFileReader();
 
+	// Create New JPanels For Different Data
 	private JPanel firstPanel;
 	private JPanel secondPanel;
 
 
-
+	// Constructor Class which Call The Method Create Gui
 	public FirstPageGui(){
 		super("Cinema Enterpriso");
 		setVisible(true);
@@ -141,9 +169,11 @@ public class FirstPageGui extends JFrame{
 
 
 	}
+	
+	// Method Which Builds The GUI
 	public void createGui(){
 
-
+		// Starts The File Reader Function For Movie/Snack/Drink - Then Data To Be Read:
 		movieFile.openFile();
 		movieFile.readFile();
 
@@ -154,6 +184,21 @@ public class FirstPageGui extends JFrame{
 		drinksFile.readFile();
 		ButtonGroup radioGroup = new ButtonGroup();
 
+		// Build JPanel size and properties
+		secondPanel = new JPanel();
+		secondPanel.setVisible(false);
+		secondPanel.setSize(610, 504);
+		secondPanel.setBackground(Color.DARK_GRAY);
+		getContentPane().add(secondPanel);
+		secondPanel.setLayout(null);
+
+		firstPanel = new JPanel();
+		firstPanel.setLocation(0, 0);
+		firstPanel.setSize(613,540);
+		getContentPane().add(firstPanel);
+		firstPanel.setBackground(Color.LIGHT_GRAY);
+		firstPanel.setLayout(null);
+
 		JPanel thirdPanel = new JPanel();
 		thirdPanel.setLocation(0, 0);
 		getContentPane().add(thirdPanel);
@@ -162,52 +207,67 @@ public class FirstPageGui extends JFrame{
 		thirdPanel.setBackground(Color.DARK_GRAY);
 		thirdPanel.setLayout(null);
 
-		
-
-		firstPanel = new JPanel();
 
 
 
-		firstPanel.setSize(610,504);
-		getContentPane().add(firstPanel);
-		firstPanel.setBackground(Color.LIGHT_GRAY);
-		firstPanel.setLayout(null);
-
-
-
-		// Label Init's
+		// Label Initialisation
 		lblCinemaTitle = new JLabel();
 		lblMovieSelection = new JLabel();
+		lblMovieSelection.setForeground(Color.WHITE);
 		lblTheatre_Time = new JLabel();
 		lblTheatreNo = new JLabel();
+		lblTheatreNo.setForeground(Color.BLACK);
 		lblActualTheatreNo = new JLabel();
 		lblTimeOfShow = new JLabel();
+		lblTimeOfShow.setForeground(Color.BLACK);
 		lblActualTimeOfShow = new JLabel();
 		lblImgPreview = new JLabel();
 		lblTicketHeading = new JLabel();
 		lblAgeRating = new JLabel();
 		lblActualAgeRating = new JLabel();
 		lblAdultTicket = new JLabel();
+		lblAdultTicket.setForeground(Color.BLACK);
 		lblChildTicket = new JLabel();
+		lblChildTicket.setForeground(Color.BLACK);
 		lblNoSeats = new JLabel();
+		lblNoSeats.setForeground(Color.BLACK);
 		lblActualNoSeats = new JLabel();
 		lblActualAdultTicket = new JLabel();
 		lblActualChildTicket = new JLabel();
+		lblDateOfFilm = new JLabel();
+		lblDateOfFilm.setForeground(Color.BLACK);
+		lblActualDateOfFilm = new JLabel();
 		lblAdultQty = new JLabel();
+		lblAdultQty.setForeground(Color.BLACK);
 		lblChildQty = new JLabel();
+		lblChildQty.setForeground(Color.BLACK);
 		lblTicketSubTtl = new JLabel();
+		lblTicketSubTtl.setForeground(Color.BLACK);
 		lblActualTicketSubTtl = new JLabel();
 		lblSnacks_Drinks = new JLabel();
 		lblSnacksQty = new JLabel();
+		lblSnacksQty.setForeground(Color.BLACK);
 		lblDrinksQty = new JLabel();
+		lblDrinksQty.setForeground(Color.BLACK);
 		lblSDSubTotal = new JLabel();
+		lblSDSubTotal.setForeground(Color.BLACK);
 		lblActualSDSubTotal = new JLabel();
 		lblTotalPrice = new JLabel();
+		lblTotalPrice.setForeground(Color.BLACK);
 		lblActualTotalPrice = new JLabel();
 		lblCashOrCard = new JLabel();
+		lblCashOrCard.setForeground(Color.BLACK);
+		lblExtraServices = new JLabel();
+		lblSeatType = new JLabel();
+		lblSeatType.setForeground(Color.BLACK);
+		lblWaiterService = new JLabel();
+		lblWaiterService.setForeground(Color.BLACK);
+		lblBackgroundPic = new JLabel();
+		lblBackgroundPic.setBackground(Color.GRAY);
 
 
-		// ComboBox Init's
+
+		// ComboBox Initialisation
 		cmbMovies = new JComboBox<String>();
 		cmbAdultTicket = new JComboBox<String>();
 		cmbChildTicket = new JComboBox<String>();
@@ -215,27 +275,67 @@ public class FirstPageGui extends JFrame{
 		cmbSnacksQty = new JComboBox<String>();
 		cmbDrinks = new JComboBox<String>();
 		cmbDrinksQty = new JComboBox<String>();
+		cmbSeatType = new JComboBox<String>();
 
-		// Separator Init's
+		// Separator Initialisation
 		first_Separator = new JSeparator();
 		second_Separator = new JSeparator();
 		third_Separator = new JSeparator();
 		fourth_Separator = new JSeparator(SwingConstants.VERTICAL);
+		fifth_Separator = new JSeparator();
 
-		// Radio Button Init's
+		// Radio Button Initialisation
 		radioBtnCash = new JRadioButton();
-		radioBtnCash.setBackground(Color.LIGHT_GRAY);
+		radioBtnCash.setBackground(Color.GRAY);
 		radioBtnCard = new JRadioButton();
-		radioBtnCard.setBackground(Color.LIGHT_GRAY);
+		radioBtnCard.setBackground(Color.GRAY);
 		radioGroup.add(radioBtnCard);
 		radioGroup.add(radioBtnCash);
 
-		// Button Init's
+		// Button Initialisation
 		btnOrderTickets = new JButton();
+
+		// CheckBox's Initialisation
+		cbWaiterService = new JCheckBox();
+		cbWaiterService.setBackground(Color.GRAY);
+
+
+		// JLabel Initialisation For Second JPanel
+		lblReceiptTitle = new JLabel();
+		lblMovieOrdered = new JLabel();
+		lblActualMovieOrdered = new JLabel();
+		lblMovieTime = new JLabel();
+		lblActualMovieTime = new JLabel();
+		lblMovieImage = new JLabel();
+		lblMovieTheatre = new JLabel();
+		lblActualMovieTheatre = new JLabel();
+		lblActualMovieRating = new JLabel();
+		lblAdultPrice = new JLabel();
+		lblActualAdultPrice = new JLabel();
+		lblChildPrice = new JLabel();
+		lblActualChildPrice = new JLabel();
+		lblATicketQty = new JLabel();
+		lblCTicketQty = new JLabel();
+		lblSnackName = new JLabel();
+		lblSnackQty = new JLabel();
+		lblDrinkName = new JLabel();
+		lblDrinkQty = new JLabel();
+		lblMthdOfPayment = new JLabel();
+		lblActualMtdPayment = new JLabel();
+		lblTotalPaid = new JLabel();
+		lblActualTotalPaid = new JLabel();
+		lblActualDateOfShow = new JLabel();
+		lblActualSeatType = new JLabel();
+		lblActualWaiterService = new JLabel();
+		
+		// Button Initialisation For Second JPanel
+		btnReturnMain = new JButton();
+		
+		
 
 		// Title Of The Program
 		lblCinemaTitle.setFont(new Font("Times New Roman",Font.BOLD,18));
-		lblCinemaTitle.setForeground(new Color(0,68,90));
+		lblCinemaTitle.setForeground(Color.WHITE);
 		lblCinemaTitle.setText("HUDDERSFIELD CINEMAX");
 		firstPanel.add(lblCinemaTitle);
 		lblCinemaTitle.setBounds(170,15,309,30);
@@ -251,7 +351,7 @@ public class FirstPageGui extends JFrame{
 		cmbMovies.setModel(new DefaultComboBoxModel<String>(movieFile.displayAllFilms()));
 
 		firstPanel.add(cmbMovies);
-		cmbMovies.setBounds(93,67,258,25);
+		cmbMovies.setBounds(93,67,214,25);
 
 
 		// Listening For Any Events Coming From The Movie Combo Box
@@ -264,14 +364,14 @@ public class FirstPageGui extends JFrame{
 				lblMovieAgeRatingActionPerformed(evt);
 				lblNoSeatsActionPerformed(evt);
 				lblTicketPriceActionPerformed(evt);
+				lblDateOfMovieActionPerformed(evt);
 
 			}
 		});
 
 
-
 		// Setting Up The Image Preview For When The Program First Runs
-		lblImgPreview.setBounds(350,60,250,250);
+		lblImgPreview.setBounds(350,65,250,250);
 		lblImgPreview.setVisible(true);
 		lblImgPreview.setFont(new Font("Times New Roman", Font.ITALIC + Font.BOLD, 20));
 		lblImgPreview.setText("SELECT A MOVIE");
@@ -279,11 +379,11 @@ public class FirstPageGui extends JFrame{
 		lblImgPreview.setVerticalAlignment(SwingConstants.CENTER);
 		firstPanel.add(lblImgPreview);
 
-		lblImgPreview.setBorder(BorderFactory.createEtchedBorder());
+		lblImgPreview.setBorder(BorderFactory.createEtchedBorder(Color.BLACK,Color.WHITE));
 
 		// Age Rating Label & The Value It Will Display Depending On The Movie Selected
 		lblAgeRating.setFont(new Font ("Times New Roman", Font.BOLD, 10));
-		lblAgeRating.setForeground(new Color(0, 102, 255));
+		lblAgeRating.setForeground(Color.WHITE);
 		lblAgeRating.setText("Age Rating: ");
 		firstPanel.add(lblAgeRating);
 		lblAgeRating.setBounds(433,314,110,15);
@@ -295,13 +395,13 @@ public class FirstPageGui extends JFrame{
 
 		// Heading With A Separator Between Movie And Theatre Details
 		lblTheatre_Time.setFont(new Font("Times New Roman",Font.BOLD,10));
-		lblTheatre_Time.setForeground(new Color(0, 102, 255));
+		lblTheatre_Time.setForeground(Color.WHITE);
 		lblTheatre_Time.setText("Theatre No & Time");
 		firstPanel.add(lblTheatre_Time);
 		lblTheatre_Time.setBounds(18,99,110,15);
 
 		firstPanel.add(first_Separator);
-		first_Separator.setBounds(128,109,210,10);
+		first_Separator.setBounds(128,109,223,10);
 
 		// Setting Up Theater Number Labels
 		lblTheatreNo.setFont(new Font("Times New Roman",0,12));
@@ -310,7 +410,7 @@ public class FirstPageGui extends JFrame{
 		lblTheatreNo.setBounds(18,120,80,15);
 
 		lblActualTheatreNo.setFont(new Font("Times New Roman", Font.ITALIC,12));
-		lblActualTheatreNo.setForeground(new Color(0, 102, 255));
+		lblActualTheatreNo.setForeground(Color.WHITE);
 		firstPanel.add(lblActualTheatreNo);
 		lblActualTheatreNo.setBounds(108,118,230,20);
 
@@ -321,9 +421,20 @@ public class FirstPageGui extends JFrame{
 		lblTimeOfShow.setBounds(18,150,90,15);
 
 		lblActualTimeOfShow.setFont(new Font("Times New Roman",Font.ITALIC,12));
-		lblActualTimeOfShow.setForeground(new Color(0, 102, 255));
+		lblActualTimeOfShow.setForeground(Color.WHITE);
 		firstPanel.add(lblActualTimeOfShow);
 		lblActualTimeOfShow.setBounds(118,147,100,20);
+
+		//Date Of Film
+		lblDateOfFilm.setFont(new Font("Times New Roman",0,12));
+		lblDateOfFilm.setText("Date Of Film:");
+		firstPanel.add(lblDateOfFilm);
+		lblDateOfFilm.setBounds(190,150,90,15);
+
+		lblActualDateOfFilm.setFont(new Font("Times New Roman",Font.ITALIC,12));
+		lblActualDateOfFilm.setForeground(Color.WHITE);
+		firstPanel.add(lblActualDateOfFilm);
+		lblActualDateOfFilm.setBounds(275,147,100,20);
 
 		// Number Of Seats Available
 		lblNoSeats.setFont(new Font("Times New Roman",0,12));
@@ -332,20 +443,20 @@ public class FirstPageGui extends JFrame{
 		lblNoSeats.setBounds(190,120,80,15);
 
 		lblActualNoSeats.setFont(new Font("Times New Roman",Font.ITALIC,12));
-		lblActualNoSeats.setForeground(new Color(0, 102, 255));
+		lblActualNoSeats.setForeground(Color.WHITE);
 		firstPanel.add(lblActualNoSeats);
 		lblActualNoSeats.setBounds(257,118,51,20);
 
 
 		// Ticket Heading
 		lblTicketHeading.setFont(new Font("Times New Roman", Font.BOLD,10));
-		lblTicketHeading.setForeground(new Color(0, 102, 255));
+		lblTicketHeading.setForeground(Color.WHITE);
 		lblTicketHeading.setText("Ticket Pricing");
 		firstPanel.add(lblTicketHeading);
 		lblTicketHeading.setBounds(18,177,110,15);
 
 		firstPanel.add(second_Separator);
-		second_Separator.setBounds(98,187,240,10);
+		second_Separator.setBounds(128,187,223,10);
 
 		// Adult Tickets
 		lblAdultTicket.setFont(new Font("Times New Roman",0,12));
@@ -354,7 +465,7 @@ public class FirstPageGui extends JFrame{
 		lblAdultTicket.setBounds(18,207,80,15);
 
 		lblActualAdultTicket.setFont(new Font("Times New Roman",Font.ITALIC,12));
-		lblActualAdultTicket.setForeground(new Color(0, 102, 255));
+		lblActualAdultTicket.setForeground(Color.WHITE);
 		firstPanel.add(lblActualAdultTicket);
 		lblActualAdultTicket.setBounds(108,204,51,20);
 
@@ -366,7 +477,7 @@ public class FirstPageGui extends JFrame{
 		lblChildTicket.setBounds(18,244,80,15);
 
 		lblActualChildTicket.setFont(new Font("Times New Roman",Font.ITALIC,12));
-		lblActualChildTicket.setForeground(new Color(0, 102, 255));
+		lblActualChildTicket.setForeground(Color.WHITE);
 		firstPanel.add(lblActualChildTicket);
 		lblActualChildTicket.setBounds(108,241,51,20);
 
@@ -383,7 +494,7 @@ public class FirstPageGui extends JFrame{
 
 
 
-
+		// ComboBox Which Displays The Number Of Tickets A User Can Select For Adult & Child Tickets
 		cmbAdultTicket.setModel(new DefaultComboBoxModel<String>(new String[]{"0","1","2","3",
 				"4","5","6","7","8"}));
 		firstPanel.add(cmbAdultTicket);
@@ -398,35 +509,39 @@ public class FirstPageGui extends JFrame{
 		cmbChildTicket.setEnabled(false);
 
 
-
+		// Ticket Sub Total 
 		lblTicketSubTtl.setFont(new Font("Times New Roman",0,12));
 		lblTicketSubTtl.setText("Sub Total:");
 		lblTicketSubTtl.setBounds(105,272,90,15);
 		firstPanel.add(lblTicketSubTtl);
 
 		lblActualTicketSubTtl.setFont(new Font("Times New Roman",Font.ITALIC,12));
-		lblActualTicketSubTtl.setForeground(new Color(0, 102, 255));
+		lblActualTicketSubTtl.setForeground(Color.WHITE);
 		lblActualTicketSubTtl.setText("£0.00");
 		lblActualTicketSubTtl.setBounds(170,272,90,15);
 		firstPanel.add(lblActualTicketSubTtl);
 
+		// Heading For Snacks & Drinks Section
 		lblSnacks_Drinks.setFont(new Font("Times New Roman",Font.BOLD,10));
-		lblSnacks_Drinks.setForeground(new Color(0, 102, 255));
+		lblSnacks_Drinks.setForeground(Color.WHITE);
 		lblSnacks_Drinks.setText("Snacks & Drinks");
 		lblSnacks_Drinks.setBounds(18,300,123,15);
 		firstPanel.add(lblSnacks_Drinks);
 
+		// Adding Some Design Using JSeparators
 		firstPanel.add(third_Separator);
-		third_Separator.setBounds(115,309,223,10);
+		third_Separator.setBounds(128,309,223,10);
 
 		firstPanel.add(fourth_Separator);
-		fourth_Separator.setBounds(350,322,13,176);
+		fourth_Separator.setBounds(350,307,13,244);
 
-
+		// Listening For Any Events Occuring Within The Ticket ComboBox's
 		cmbAdultTicket.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				lblSubTotalTicketActionPerformed(evt);
 				cmbTicketQtyActionPerformed(evt);
+				actualTotalPriceActionPerformed(evt);
+
 			}
 		});
 
@@ -434,6 +549,8 @@ public class FirstPageGui extends JFrame{
 			public void actionPerformed(ActionEvent evt) {
 				lblSubTotalTicketActionPerformed(evt);
 				cmbTicketQtyActionPerformed(evt);
+				actualTotalPriceActionPerformed(evt);
+
 			}
 		});
 
@@ -472,19 +589,19 @@ public class FirstPageGui extends JFrame{
 		cmbDrinksQty.setBounds(276,391,40,20);
 		cmbDrinksQty.setEnabled(false);
 
-
+		// Sub Total For The Amount of Snacks And Drinks Selected Labels
 		lblSDSubTotal.setFont(new Font("Times New Roman",0,12));
 		lblSDSubTotal.setText("Sub Total:");
 		lblSDSubTotal.setBounds(105,425,90,15);
 		firstPanel.add(lblSDSubTotal);
 
 		lblActualSDSubTotal.setFont(new Font("Times New Roman",Font.ITALIC,12));
-		lblActualSDSubTotal.setForeground(new Color(0, 102, 255));
+		lblActualSDSubTotal.setForeground(Color.WHITE);
 		lblActualSDSubTotal.setText("£0.00");
 		lblActualSDSubTotal.setBounds(172,425,90,15);
 		firstPanel.add(lblActualSDSubTotal);
 
-
+		// Listening To Any Events Happening Within The Snacks And Drinks ComboBox's
 		cmbSnacks.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmbSnacksActionPerformed(evt);
@@ -500,26 +617,32 @@ public class FirstPageGui extends JFrame{
 		cmbSnacksQty.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				lblSnackDrinkSubTotalActionPerformed(evt);
+				actualTotalPriceActionPerformed(evt);
+
 			}
 		});
 
 		cmbDrinksQty.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				lblSnackDrinkSubTotalActionPerformed(evt);
+				actualTotalPriceActionPerformed(evt);
+
 			}
 		});
-
+		
+		// Setting A Total Price Which Consists Of All The Costs
 		lblTotalPrice.setFont(new Font("Times New Roman",0,12));
 		lblTotalPrice.setText("Total To Pay:");
 		lblTotalPrice.setBounds(363,340,90,15);
 		firstPanel.add(lblTotalPrice);
 
 		lblActualTotalPrice.setFont(new Font("Times New Roman",Font.ITALIC,12));
-		lblActualTotalPrice.setForeground(new Color(0, 102, 255));
+		lblActualTotalPrice.setForeground(Color.WHITE);
 		lblActualTotalPrice.setText("£0.00");
 		lblActualTotalPrice.setBounds(450,340,90,15);
 		firstPanel.add(lblActualTotalPrice);
 
+		// Labels And CheckBox's Which Allow The User To Select To Pay By Cash Or Card
 		lblCashOrCard.setFont(new Font("Times New Roman",0,11));
 		lblCashOrCard.setText("Would You Like To Pay By Cash Or Card:");
 		lblCashOrCard.setBounds(360,367,240,25);
@@ -536,6 +659,7 @@ public class FirstPageGui extends JFrame{
 		firstPanel.add(radioBtnCard);
 		radioBtnCard.setEnabled(false);
 
+		// Action Listeners For Radio Button's 
 		radioBtnCard.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cardRdioBtnActionPerformed(evt);
@@ -548,46 +672,63 @@ public class FirstPageGui extends JFrame{
 			}
 		});
 
+		// Extra Services Section Heading - Seat Type & Waiter Service
+		lblExtraServices.setFont(new Font("Times New Roman",Font.BOLD,10));
+		lblExtraServices.setForeground(Color.WHITE);
+		lblExtraServices.setText("Extra Services");
+		lblExtraServices.setBounds(18,445,123,15);
+		firstPanel.add(lblExtraServices);
 
+		firstPanel.add(fifth_Separator);
+		fifth_Separator.setBounds(128,455,223,10);
+
+		lblSeatType.setFont(new Font("Times New Roman",0,12));
+		lblSeatType.setText("Seat Type: ");
+		lblSeatType.setBounds(18,470,90,15);
+		firstPanel.add(lblSeatType);
+
+		// ComboBox For The User To Select The Seat Type They Want
+		cmbSeatType.setModel(new DefaultComboBoxModel<String>(new String[]{"Standard Seats", "PullMan Seats: £15",
+		"Love-Seats: £25"}));
+		firstPanel.add(cmbSeatType);
+		cmbSeatType.setBounds(93,467,177,20);
+		cmbSeatType.setEnabled(false);
+		
+		// Waiter Service CheckBox & JLabel Heading To Select If They Want
+		lblWaiterService.setFont(new Font("Times New Roman",0,12));
+		lblWaiterService.setText("Waiter Service For Only £5.50!");
+		lblWaiterService.setBounds(18,505,186,15);
+		firstPanel.add(lblWaiterService);
+
+		cbWaiterService.setSelected(false);
+		cbWaiterService.setEnabled(false);
+		cbWaiterService.setBounds(208,505,38,15);
+		firstPanel.add(cbWaiterService);
+
+		// Place Order Button - Processes The Whole Transaction
 		btnOrderTickets.setText("Place Order");
 		firstPanel.add(btnOrderTickets);
 		btnOrderTickets.setBounds(416,438,113,20);
 		btnOrderTickets.setEnabled(false);
 
-
-		secondPanel = new JPanel();
-		secondPanel.setVisible(false);
-
-		secondPanel.setSize(610, 504);
-		secondPanel.setBackground(Color.DARK_GRAY);
-		getContentPane().add(secondPanel);
-		secondPanel.setLayout(null);
+		// Action Listener For Seat Type & Waiter Service ComboBox/Checkbox
+		cmbSeatType.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				seatTypeActionPerformed(evt);
+				actualTotalPriceActionPerformed(evt);
 
 
-		lblReceiptTitle = new JLabel();
-		lblMovieOrdered = new JLabel();
-		lblActualMovieOrdered = new JLabel();
-		lblMovieTime = new JLabel();
-		lblActualMovieTime = new JLabel();
-		lblMovieImage = new JLabel();
-		lblMovieTheatre = new JLabel();
-		lblActualMovieTheatre = new JLabel();
-		lblActualMovieRating = new JLabel();
-		lblAdultPrice = new JLabel();
-		lblActualAdultPrice = new JLabel();
-		lblChildPrice = new JLabel();
-		lblActualChildPrice = new JLabel();
-		lblATicketQty = new JLabel();
-		lblCTicketQty = new JLabel();
-		lblSnackName = new JLabel();
-		lblSnackQty = new JLabel();
-		lblDrinkName = new JLabel();
-		lblDrinkQty = new JLabel();
-		lblMthdOfPayment = new JLabel();
-		lblActualMtdPayment = new JLabel();
-		lblTotalPaid = new JLabel();
-		lblActualTotalPaid = new JLabel();
-		btnReturnMain = new JButton();
+			}
+		});
+		cbWaiterService.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				cbWaiterServiceActionPerformed(evt);
+				actualTotalPriceActionPerformed(evt);
+
+
+			}
+		});
+
 
 		// Receipt Title - Below Is Receipt Labels
 		lblReceiptTitle.setFont(new Font("Times New Roman",Font.BOLD,18));
@@ -606,7 +747,7 @@ public class FirstPageGui extends JFrame{
 		lblActualMovieOrdered.setFont(new Font("Times New Roman",Font.ITALIC,12));
 		lblActualMovieOrdered.setForeground(new Color(0, 102, 255));
 		secondPanel.add(lblActualMovieOrdered);
-		lblActualMovieOrdered.setBounds(120,67,230,25);
+		lblActualMovieOrdered.setBounds(120,67,183,25);
 
 		// Image For The Movie - Receipt
 		lblMovieImage.setBounds(350,60,250,250);
@@ -642,7 +783,7 @@ public class FirstPageGui extends JFrame{
 		lblActualMovieRating.setFont(new Font ("Times New Roman", Font.BOLD, 12));
 		lblActualMovieRating.setForeground(Color.WHITE);
 		secondPanel.add(lblActualMovieRating);
-		lblActualMovieRating.setBounds(227,104,76,40);
+		lblActualMovieRating.setBounds(227,167,76,40);
 		lblActualMovieRating.setBorder(BorderFactory.createEtchedBorder());
 
 		// Adult Tickets - Receipt
@@ -660,7 +801,7 @@ public class FirstPageGui extends JFrame{
 		lblATicketQty.setFont(new Font("Times New Roman",Font.BOLD,12));
 		lblATicketQty.setForeground(new Color(0, 102, 255));
 		secondPanel.add(lblATicketQty);
-		lblATicketQty.setBounds(227,157,87,25);
+		lblATicketQty.setBounds(180,157,87,25);
 
 		// Child Tickets - Receipt
 		lblChildPrice.setFont(new Font("Times New Roman",0,12));
@@ -677,29 +818,29 @@ public class FirstPageGui extends JFrame{
 		lblCTicketQty.setFont(new Font("Times New Roman",Font.BOLD,12));
 		lblCTicketQty.setForeground(new Color(0, 102, 255));
 		secondPanel.add(lblCTicketQty);
-		lblCTicketQty.setBounds(227,187,87,25);
+		lblCTicketQty.setBounds(180,187,87,25);
 
 		// Snack Selected - Receipt
 		lblSnackName.setFont(new Font("Times New Roman",0,12));
 		lblSnackName.setForeground(Color.WHITE);
 		secondPanel.add(lblSnackName);
-		lblSnackName.setBounds(18,222,218,15);
+		lblSnackName.setBounds(18,220,218,15);
 
 		lblSnackQty.setFont(new Font("Times New Roman",Font.BOLD,12));
 		lblSnackQty.setForeground(new Color(0, 102, 255));
 		secondPanel.add(lblSnackQty);
-		lblSnackQty.setBounds(227,217,87,25);
+		lblSnackQty.setBounds(153,215,87,25);
 
 		// Drink Selected - Receipt
 		lblDrinkName.setFont(new Font("Times New Roman",0,12));
 		lblDrinkName.setForeground(Color.WHITE);
 		secondPanel.add(lblDrinkName);
-		lblDrinkName.setBounds(18,252,218,15);
+		lblDrinkName.setBounds(18,249,218,15);
 
 		lblDrinkQty.setFont(new Font("Times New Roman",Font.BOLD,12));
 		lblDrinkQty.setForeground(new Color(0, 102, 255));
 		secondPanel.add(lblDrinkQty);
-		lblDrinkQty.setBounds(227,247,87,25);
+		lblDrinkQty.setBounds(153,244,87,25);
 
 		// Method Of Payment - Receipt
 		lblMthdOfPayment.setFont(new Font("Times New Roman",0,12));
@@ -711,24 +852,44 @@ public class FirstPageGui extends JFrame{
 		lblActualMtdPayment.setFont(new Font("Times New Roman",Font.BOLD,12));
 		lblActualMtdPayment.setForeground(new Color(0, 102, 255));
 		secondPanel.add(lblActualMtdPayment);
-		lblActualMtdPayment.setBounds(227,277,87,25);
-
+		lblActualMtdPayment.setBounds(149,278,87,25);
+		
+		// Date Of Film
+		lblActualDateOfShow.setFont(new Font("Times New Roman",Font.BOLD,12));
+		lblActualDateOfShow.setForeground(Color.white);
+		secondPanel.add(lblActualDateOfShow);
+		lblActualDateOfShow.setBounds(274,67,87,25);
+		
+		// Type Of Seats
+		lblActualSeatType.setFont(new Font("Times New Roman",Font.BOLD,12));
+		lblActualSeatType.setForeground(Color.WHITE);
+		secondPanel.add(lblActualSeatType);
+		lblActualSeatType.setBounds(199,97,139,25);
+		
+		// Waiter Service Label
+		lblActualWaiterService.setFont(new Font("Times New Roman",Font.BOLD,12));
+		lblActualWaiterService.setForeground(Color.WHITE);
+		secondPanel.add(lblActualWaiterService);
+		lblActualWaiterService.setBounds(199,127,139,25);
+		
+		// Final Price To Pay On The Receipt 
 		lblTotalPaid.setFont(new Font("Times New Roman",0,14));
 		lblTotalPaid.setForeground(Color.WHITE);
 		lblTotalPaid.setText("TOTAL PAID:");
 		secondPanel.add(lblTotalPaid);
-		lblTotalPaid.setBounds(58,314,150,15);
+		lblTotalPaid.setBounds(383,322,150,15);
 
 		lblActualTotalPaid.setFont(new Font("Times New Roman",Font.BOLD,14));
 		lblActualTotalPaid.setForeground(new Color(0, 102, 255));
 		secondPanel.add(lblActualTotalPaid);
-		lblActualTotalPaid.setBounds(160,309,87,25);
+		lblActualTotalPaid.setBounds(485,317,87,25);
 
+		// Button Which Returns User Back To First Panel
 		btnReturnMain.setText("New Order");
 		secondPanel.add(btnReturnMain);
-		btnReturnMain.setBounds(420,322,113,20);
+		btnReturnMain.setBounds(18,309,113,20);
 
-
+		// Action Listener For Main Menu Button
 		btnReturnMain.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent evt){
 				btnNewOrderActionPerformed(evt);
@@ -736,7 +897,20 @@ public class FirstPageGui extends JFrame{
 			}
 		});
 
+		// Progress Bar Which Creates A Loading Feature In Between The 2 Panels Which Display Information
+		progrss = new JProgressBar(0,20);
+		progrss.setValue(0);
+		progrss.setStringPainted(true);
 
+		thirdPanel.add(progrss);
+		progrss.setBounds(94,83,221,50);
+
+		JLabel lblLoading = new JLabel("Generating Receipt....");
+		lblLoading.setForeground(Color.WHITE);
+		lblLoading.setBounds(114, 48, 176, 30);
+		thirdPanel.add(lblLoading);
+
+		// Action Listener For Order Button - When Pressed Run The JProgress Bar
 		btnOrderTickets.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent evt){
 				setSize(417,235);
@@ -747,20 +921,8 @@ public class FirstPageGui extends JFrame{
 
 			}
 		});
-		
-		progrss = new JProgressBar(0,20);
-		progrss.setValue(0);
-		progrss.setStringPainted(true);
 
-		thirdPanel.add(progrss);
-		progrss.setBounds(94,83,221,50);
-
-		JLabel lblLoading = new JLabel("Loading....");
-		lblLoading.setForeground(Color.WHITE);
-		lblLoading.setBounds(167, 48, 88, 30);
-		thirdPanel.add(lblLoading);
-
-
+		// Sorts Out The Time And Length Of The Loading Page 
 		time = new Timer(interval, new ActionListener() {
 
 			public void actionPerformed(ActionEvent evt) {
@@ -777,7 +939,12 @@ public class FirstPageGui extends JFrame{
 			}
 		});
 
-
+		// Sets The Background For The Main Application In The First Panel
+		lblBackgroundPic.setIcon(new ImageIcon(getClass().getResource("background.jpg")));
+		firstPanel.add(lblBackgroundPic);
+		lblBackgroundPic.setBounds(0,0,610,551);
+		
+		// Closes The File From The File Reader Class
 		movieFile.closeFile();
 		snacksFile.closeFile();
 		drinksFile.closeFile();
@@ -786,11 +953,11 @@ public class FirstPageGui extends JFrame{
 
 	}
 
-	public String getSelectedItem() {
-		return (String)cmbMovies.getSelectedItem();
-	}
 
-
+	/**
+	 * When The ComboBox For The Movie Selection Is Changed From It's Current State It Will Change The Behaviour
+	 * Of All Of Thes Elements Within The GUI
+	 */
 	private void cmbMoviesActionPerformed(ActionEvent evt) {
 
 
@@ -804,13 +971,17 @@ public class FirstPageGui extends JFrame{
 		cmbDrinks.setEnabled(true);
 		cmbDrinksQty.setEnabled(true);
 
+		cmbSeatType.setEnabled(true);
+		cbWaiterService.setEnabled(true);
+
 		btnOrderTickets.setEnabled(false);
 
-
+		// Displays The Image Of The Movie From The ComboBox Depending On The Film Selected
 		for (int i=0; i < comboIndex1; i++){
 			lblImgPreview.setIcon(new ImageIcon(getClass().getResource(movieFile.displayFilmImage(comboIndex1)))); 
 		}
 
+		// If ComboBox is 0 Resets Everything As 0 Is Not A Film
 		if (comboIndex1 == 0){
 			lblImgPreview.setIcon(new ImageIcon(getClass().getResource("")));
 			lblImgPreview.setText("SELECT A MOVIE");
@@ -829,7 +1000,13 @@ public class FirstPageGui extends JFrame{
 			cmbDrinksQty.setEnabled(false);
 			cmbDrinksQty.setSelectedIndex(comboIndex1);
 
+			cmbSeatType.setEnabled(false);
+			cmbSeatType.setSelectedIndex(0);
 
+			cbWaiterService.setEnabled(false);
+			cbWaiterService.setSelected(false);
+
+		// Any Other Changes Happen Reset The Values Of Most Of The Components On Screen
 		}else{
 			cmbAdultTicket.setSelectedIndex(0);
 			cmbChildTicket.setSelectedIndex(0);
@@ -839,12 +1016,15 @@ public class FirstPageGui extends JFrame{
 
 			cmbDrinks.setSelectedIndex(0);
 			cmbDrinksQty.setSelectedIndex(0);
+
+			cmbSeatType.setSelectedIndex(0);
+			cbWaiterService.setSelected(false);
 		}
 
 	}
 
 
-
+	// Displays The Theatre In Which The Movie Is Showing In
 	private void lblMoviesTheatreActionPerformed(ActionEvent evt){
 		lblActualTheatreNo.setText(movieFile.displayTheatreRoom(comboIndex1));
 
@@ -853,7 +1033,7 @@ public class FirstPageGui extends JFrame{
 		}
 
 	}
-
+	// Displays The Time Of The Film That They Have Selected
 	private void lblMoviesTimeActionPerformed(ActionEvent evt){
 		if(comboIndex1 == 0){
 			lblActualTimeOfShow.setText("");
@@ -862,26 +1042,23 @@ public class FirstPageGui extends JFrame{
 		}
 	}
 
-
+	// Displays The Age Rating Of The Film Selected
 	private void lblMovieAgeRatingActionPerformed(ActionEvent evt){
-		String colorFromFile = movieFile.displayFilmRatingColour(comboIndex1);
-		Color ratingColor = Color.getColor(colorFromFile);
-		lblActualAgeRating.setForeground(ratingColor);
-		
 		String ratingF = movieFile.displayFilmRating(comboIndex1);
-		String eight = "18";
-		if (eight == ratingF){
-			cmbChildTicket.setEnabled(false);
-			//System.out.println(ratingF);
-		}else{
-		//	System.out.println(ratingF);
-		}
 		lblActualAgeRating.setText(ratingF);
 
 	}
 
+	// Displays The Date Of Show For The Movie Selected
+	private void lblDateOfMovieActionPerformed(ActionEvent evt){
+		if (comboIndex1 == 0){
+			lblActualDateOfFilm.setText("");
+		}else{
+			lblActualDateOfFilm.setText(movieFile.displayFilmDate(comboIndex1));
+		}
+	}
 
-
+	// Displays The Number Of Seats Available For The Current Movie Selected
 	private void lblNoSeatsActionPerformed(ActionEvent evt){
 		seats = Integer.toString(movieFile.displayNumberOfSeats(comboIndex1));
 		lblActualNoSeats.setText(seats);
@@ -891,7 +1068,7 @@ public class FirstPageGui extends JFrame{
 		}
 	}
 
-
+	// Displays The Price For The Film Which They Have Currently Selected
 	private void lblTicketPriceActionPerformed(ActionEvent evt){
 
 		String adultPrices = Double.toString(movieFile.displayAdultTicket(comboIndex1));
@@ -906,9 +1083,8 @@ public class FirstPageGui extends JFrame{
 		}
 	}
 
-
+	// Calculation To Find Out The Sub Total Of The Both Adult And Child Tickets Purchased
 	private void lblSubTotalTicketActionPerformed(ActionEvent evt){
-		//TotalCalculations totalCalc = new TotalCalculations();
 		adultQtyIndex = cmbAdultTicket.getSelectedIndex();
 		childQtyIndex = cmbChildTicket.getSelectedIndex();
 
@@ -924,31 +1100,36 @@ public class FirstPageGui extends JFrame{
 
 		lblActualTicketSubTtl.setText("£" +ticketSubTotal+"0");
 
-		totalToPay = subTotalTickets + subTotalFood;
-		strTotal = Double.toString(totalToPay);
-		lblActualTotalPrice.setText("£"+strTotal+"0"); 
 
 	}
 
-
+	// Resets/Disables The Values Of Some Of The Components Within The Gui If No Tickets Have Been Selected
 	private void cmbTicketQtyActionPerformed(ActionEvent evt){
 		adultQtyIndex = cmbAdultTicket.getSelectedIndex();
 		childQtyIndex = cmbChildTicket.getSelectedIndex();
 
 		if (adultQtyIndex == 0 && childQtyIndex==0){
 			cmbSnacks.setEnabled(false);
+			cmbSnacks.setSelectedIndex(0);
 			cmbDrinks.setEnabled(false);
+			cmbDrinks.setSelectedIndex(0);
 			radioBtnCard.setEnabled(false);
 			radioBtnCash.setEnabled(false);
+			cmbSeatType.setEnabled(false);
+			cmbSeatType.setSelectedIndex(0);
+			cbWaiterService.setEnabled(false);
+			cbWaiterService.setSelected(false);
 		}else{
 			cmbSnacks.setEnabled(true);
 			cmbDrinks.setEnabled(true);
 			radioBtnCard.setEnabled(true);
 			radioBtnCash.setEnabled(true);
+			cmbSeatType.setEnabled(true);
+			cbWaiterService.setEnabled(true);
 		}
 
 	}
-
+	// Resets&or Resets The Value Of The Quantity ComboBox For The Snacks
 	private void cmbSnacksActionPerformed(ActionEvent evt){
 		int snackIndex = cmbSnacks.getSelectedIndex();
 		if (snackIndex == 0){
@@ -959,7 +1140,8 @@ public class FirstPageGui extends JFrame{
 			cmbSnacksQty.setSelectedIndex(1);
 		}
 	}
-
+	
+	// Resets&or Resets The Value Of The Quantity ComboBox For The Drinks
 	private void cmbDrinksActionPerformed(ActionEvent evt){
 
 		int drinkIndex = cmbDrinks.getSelectedIndex();
@@ -974,7 +1156,7 @@ public class FirstPageGui extends JFrame{
 
 	}
 
-
+	// Creates A SubTotal Which Calculates The Total Price Of The Snacks & Drinks Purchased.
 	private void lblSnackDrinkSubTotalActionPerformed(ActionEvent evt){
 
 		snackIndex = cmbSnacks.getSelectedIndex();
@@ -995,21 +1177,49 @@ public class FirstPageGui extends JFrame{
 
 		lblActualSDSubTotal.setText("£"+foodSubTotal+"0");
 
-		totalToPay = subTotalTickets + subTotalFood;
-		strTotal = Double.toString(totalToPay);
-		lblActualTotalPrice.setText("£"+strTotal+"0");
-
 	}
 
+	// Depeneding On Item Selected In The ComboBox; The Price Of Seat Will Change
+	private void seatTypeActionPerformed(ActionEvent evt){
+		int seatTypeIndex = cmbSeatType.getSelectedIndex();
+		if(seatTypeIndex == 0){
+			subTotalFood=0; 
+		}else if (seatTypeIndex == 1){
+			subTotalFood=15.0;
+		}else if (seatTypeIndex == 2){
+			subTotalFood=25.0;
 
+		}
+	}
+	
+	// If CheckBox Has Been Ticked It Will Set A Price For It
+	private void cbWaiterServiceActionPerformed(ActionEvent evt){
+		if (cbWaiterService.isSelected()){
+			cbWaiterPrice = 5.5;
+		}else{
+			cbWaiterPrice = 0;
+		}
+	}
+
+	// Totals All The SubTotal To Give The Final Total To The User As To How Much They Need To Pay
+	private void actualTotalPriceActionPerformed(ActionEvent evt){
+		totalToPay = subTotalTickets + subTotalFood+subTotalSeatType+cbWaiterPrice;
+		strTotal = Double.toString(totalToPay);
+		lblActualTotalPrice.setText("£"+strTotal+"0"); 
+	}
+
+	// If Card Radio Button Has Been Selected Then Set The Payment Method to Card
 	private void cardRdioBtnActionPerformed(ActionEvent evt){
 		if (radioBtnCard.isSelected()){
 			paymentMethod = "Card";
+			// Incase Anyone Enters Nothing It Will Catch The Null Pointer Exception And Not Do Anything
 			try{
 				String cardDetails = JOptionPane.showInputDialog(null, "Please Enter Card Details", "Card Payment"
 						, JOptionPane.OK_CANCEL_OPTION);
+				//Checks Too See If What Has Been Entered Is Empty
 				if (!cardDetails.isEmpty()){
 					btnOrderTickets.setEnabled(true);
+					disableEverythingActionPerformed(evt);
 				}
 			} catch(NullPointerException e){
 				btnOrderTickets.setEnabled(false);
@@ -1018,14 +1228,59 @@ public class FirstPageGui extends JFrame{
 
 
 	}
-
-	private void cashRdioBtnActionPerformed(ActionEvent evt){
-		if(radioBtnCash.isSelected()){
-			paymentMethod = "Cash";
-		}
-		btnOrderTickets.setEnabled(true);
+	
+	// A Method Which Disabled All Components On The Screen. This Is After The User Has Paid So Nohting Can Be Changed Until
+	// Receipt Has Been Generated.
+	private void disableEverythingActionPerformed(ActionEvent evt){
+		cmbMovies.setEnabled(false);
+		cmbAdultTicket.setEnabled(false);
+		cmbChildTicket.setEnabled(false);
+		cmbSnacks.setEnabled(false);
+		cmbSnacksQty.setEnabled(false);
+		cmbDrinks.setEnabled(false);
+		cmbDrinksQty.setEnabled(false);
+		cmbSeatType.setEnabled(false);
+		cbWaiterService.setEnabled(false);
+		radioBtnCard.setEnabled(false);
+		radioBtnCash.setEnabled(false);
 	}
+	
+	// If Cash Radio Button Has Been Selected Then Set The Payment Method to Cash
+	private void cashRdioBtnActionPerformed(ActionEvent evt){
+		String cashEntered; 
+		// Checks To See If It Is Selected
+		if(radioBtnCash.isSelected()){
+			// Set Payment Cash
+			paymentMethod = "Cash";
+			// Tries To Catch's Two Errors - First being if a non-numerical Value Has Been Entered
+			// Second If Nothing Has Been Entered At All
+			try{
+				cashEntered = JOptionPane.showInputDialog(null, "Please Enter Cash Paid:", "Cash Payment"
+						, JOptionPane.OK_CANCEL_OPTION);
+				cashPaid = Double.parseDouble(cashEntered);
+				changeReturned = cashPaid - totalToPay;
+				// Loops If The Cash Entered Is A Smaller Amount Than What They Need To Pay
+				while (cashPaid < totalToPay){
+					cashEntered = JOptionPane.showInputDialog(null, "Please Enter The Full Amount Of Cash To Be Paid:",
+							"Cash Payment"
+							, JOptionPane.OK_CANCEL_OPTION);
+					cashPaid = Double.parseDouble(cashEntered);
+					changeReturned = cashPaid - totalToPay;
+				}
 
+				// Converts To String After Working Out The Change To Be Presented In A Dialog Box
+				change = Double.toString(changeReturned);
+				JOptionPane.showMessageDialog(null, "Change Returned: £"+change+"0");
+				btnOrderTickets.setEnabled(true);
+				disableEverythingActionPerformed(evt);
+			// Dialog Box's IF Non-Numerical Values Have Been Entered
+			}catch(NumberFormatException | NullPointerException e){
+				JOptionPane.showMessageDialog(null, "Please enter numbers only");
+				btnOrderTickets.setEnabled(false);
+			}
+		}
+	}
+	// Action Event For When The Order Button Is Pressed -
 	public void btnOrderActionPerformed(ActionEvent evt){
 		setSize(610,385);
 		firstPanel.setVisible(false);
@@ -1033,6 +1288,7 @@ public class FirstPageGui extends JFrame{
 		lblActualMovieOrdered.setText(movieFile.displayFilmName(comboIndex1));
 		lblMovieImage.setIcon(new ImageIcon(getClass().getResource(movieFile.displayFilmImage(comboIndex1))));
 		lblActualMovieTime.setText(movieFile.displayTimeOfShow(comboIndex1));
+		lblActualDateOfShow.setText(movieFile.displayFilmDate(comboIndex1));
 		lblActualMovieTheatre.setText(movieFile.displayTheatreRoom(comboIndex1));
 		lblActualMovieRating.setText("Rated:"+movieFile.displayFilmRating(comboIndex1));
 		lblActualAdultPrice.setText("£"+movieFile.displayAdultTicket(comboIndex1)+"0");
@@ -1041,18 +1297,28 @@ public class FirstPageGui extends JFrame{
 		lblCTicketQty.setText("x"+childQtyIndex);
 		if (snackIndex==0){
 			lblSnackName.setText("No Snacks Purchased With Ticket/s");
+			lblSnackQty.setText("");
 		}else{
 			lblSnackName.setText(snacksFile.displaySnack(snackIndex));
 			lblSnackQty.setText("x"+snackQtyIndex);
 		}
 		if (drinkIndex == 0){
 			lblDrinkName.setText("No Drinks Purchased With Ticket/s");
+			lblDrinkQty.setText("");
 		}else{
 			lblDrinkName.setText(drinksFile.displayDrink(drinkIndex));
 			lblDrinkQty.setText("x"+drinkQtyIndex);
 		}
 
 		lblActualMtdPayment.setText(paymentMethod);
+		lblActualSeatType.setText((String) cmbSeatType.getSelectedItem());
+		
+		if (cbWaiterService.isSelected()){
+			lblActualWaiterService.setText("Waiter Service: £5");
+		}else{
+			lblActualWaiterService.setText("Waiter Service: N/a");
+		}
+		
 
 		lblActualTotalPaid.setText("£"+strTotal+"0");
 		int updatedSeats = movieFile.displayNumberOfSeats(comboIndex1) - (adultQtyIndex + childQtyIndex);
@@ -1060,10 +1326,12 @@ public class FirstPageGui extends JFrame{
 
 	}
 
+	// Action Event To Display The Original Screen Once User/Customer Have Seen The Receipt
 	private void btnNewOrderActionPerformed(ActionEvent evt){
-		setSize(610,528);
+		setSize(610,565);
 		firstPanel.setVisible(true);
 		secondPanel.setVisible(false);
+		cmbMovies.setEnabled(true);
 		lblActualNoSeats.setText(seats);
 		cmbAdultTicket.setSelectedIndex(0);
 		cmbChildTicket.setSelectedIndex(0);

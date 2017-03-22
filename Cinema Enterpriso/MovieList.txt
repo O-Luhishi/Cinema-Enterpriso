@@ -1,15 +1,15 @@
 ; ; 0; 0; 0; null; null; null; null
-Doctor Strange 22/05/17; 12A; 7.00; 5.00; 150; CW-01-01; 9:00PM; Doctor_Strange.jpg; Color.ORANGE
-T2 Trainspotting 22/05/17; 18; 7.00; 5.00; 250; CW-01-02; 9:00PM; T2Trainspotting.jpg; Color.RED
-Guardians Of The Galaxy 22/05/17; 12A; 5.00; 3.00; 250; CW-01-03; 9:00PM; GuardiansOfGalaxy.jpg; Color.GREEN
-10 Cloverfield Lane 22/05/17; 18; 5.00; 3.00; 75; CW1-01-04; 9:00PM; 10_Cloverfield_Lane.jpg; Color.RED
-Moana 22/05/17; PG; 7.00; 5.00; 250; CW1-01-05; 9:00PM; Moana.jpg; Color.GREEN
-Rogue One 22/05/17; 15; 7.00; 5.00; 150; CW-02-01; 9:00PM; rogueone.jpg; Color.ORANGE
-Kung-Fu Panda 3 22/05/17; PG; 5.00; 3.00; 25; CW-02-02; 9:00PM; kung-fu-panda-3.jpg; Color.GREEN
-Power Rangers MMPR 22/05/17; 12A; 7.00; 5.00; 150; CW-02-03; 9:00PM; Power-Rangers-Movie-2017.jpg; Color.ORANGE
-Avengers Age Of Ultron 22/05/17; 12A; 5.00; 3.00; 75; CW-02-04; 9:00PM; Avengers.jpg; Color.ORANGE
-Batman Vs Superman 22/05/17; 12A; 5.00; 3.00; 75; CW-02-05; 9:00PM; BatmanVsSuperman.jpg; Color.ORANGE
-Beauty And The Beast 29/05/17; PG; 7.00; 5.00; 250; CW-01-01; 9:00PM; beautyandthebeast.jpg; Color.GREEN
-Logan 29/05/17; 15; 7.00; 5.00; 250; CW-01-02; 9:00PM; logan.jpg; Color.RED
-The Great Wall 29/05/17; 12A; 5.00; 3.00; 75; CW-01-03; 9:00PM; theWall.jpg; Color.ORANGE
-Lego Batman Movie 29/05/17; PG; 7.00; 3.00; 150; CW-01-04; 9:00PM; legobatman.jpg; Color.GREEN
+Doctor Strange; 12A; 7.00; 5.00; 150; CW-01-01; 9:00PM; Doctor_Strange.jpg; 22/05/17
+T2 Trainspotting; 18; 7.00; 5.00; 250; CW-01-02; 9:00PM; T2Trainspotting.jpg; 22/05/17
+Guardians Of The Galaxy; 12A; 5.00; 3.00; 250; CW-01-03; 9:00PM; GuardiansOfGalaxy.jpg; 22/05/17
+10 Cloverfield Lane; 18; 5.00; 3.00; 75; CW1-01-04; 9:00PM; 10_Cloverfield_Lane.jpg; 22/05/17
+Moana; PG; 7.00; 5.00; 250; CW1-01-05; 9:00PM; Moana.jpg; 22/05/17
+Rogue One; 15; 7.00; 5.00; 150; CW-02-01; 9:00PM; rogueone.jpg; 22/05/17
+Kung-Fu Panda 3; PG; 5.00; 3.00; 25; CW-02-02; 9:00PM; kung-fu-panda-3.jpg; 22/05/17
+Power Rangers MMPR; 12A; 7.00; 5.00; 150; CW-02-03; 9:00PM; Power-Rangers-Movie-2017.jpg; 22/05/17
+Avengers Age Of Ultron; 12A; 5.00; 3.00; 75; CW-02-04; 9:00PM; Avengers.jpg; 22/05/17
+Batman Vs Superman; 12A; 5.00; 3.00; 75; CW-02-05; 9:00PM; BatmanVsSuperman.jpg; 22/05/17 
+Beauty And The Beast; PG; 7.00; 5.00; 250; CW-01-01; 9:00PM; BeautyAndBeast.jpg; 29/05/17
+Logan; 15; 7.00; 5.00; 250; CW-01-02; 9:00PM; Logan.jpg; 29/05/17
+The Great Wall; 12A; 5.00; 3.00; 75; CW-01-03; 9:00PM; ThegreatWall.jpg; 29/05/17
+Lego Batman Movie; PG; 7.00; 3.00; 150; CW-01-04; 9:00PM; LegoBatman.jpg; 29/05/17
