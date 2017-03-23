@@ -517,7 +517,7 @@ public class FirstPageGui extends JFrame{
 
 		lblActualTicketSubTtl.setFont(new Font("Times New Roman",Font.ITALIC,12));
 		lblActualTicketSubTtl.setForeground(Color.WHITE);
-		lblActualTicketSubTtl.setText("Â£0.00");
+		lblActualTicketSubTtl.setText("£0.00");
 		lblActualTicketSubTtl.setBounds(170,272,90,15);
 		firstPanel.add(lblActualTicketSubTtl);
 
@@ -597,7 +597,7 @@ public class FirstPageGui extends JFrame{
 
 		lblActualSDSubTotal.setFont(new Font("Times New Roman",Font.ITALIC,12));
 		lblActualSDSubTotal.setForeground(Color.WHITE);
-		lblActualSDSubTotal.setText("Â£0.00");
+		lblActualSDSubTotal.setText("£0.00");
 		lblActualSDSubTotal.setBounds(172,425,90,15);
 		firstPanel.add(lblActualSDSubTotal);
 
@@ -638,7 +638,7 @@ public class FirstPageGui extends JFrame{
 
 		lblActualTotalPrice.setFont(new Font("Times New Roman",Font.ITALIC,12));
 		lblActualTotalPrice.setForeground(Color.WHITE);
-		lblActualTotalPrice.setText("Â£0.00");
+		lblActualTotalPrice.setText("£0.00");
 		lblActualTotalPrice.setBounds(450,340,90,15);
 		firstPanel.add(lblActualTotalPrice);
 
@@ -688,15 +688,15 @@ public class FirstPageGui extends JFrame{
 		firstPanel.add(lblSeatType);
 
 		// ComboBox For The User To Select The Seat Type They Want
-		cmbSeatType.setModel(new DefaultComboBoxModel<String>(new String[]{"Standard Seats", "PullMan Seats: Â£15",
-		"Love-Seats: Â£25"}));
+		cmbSeatType.setModel(new DefaultComboBoxModel<String>(new String[]{"Standard Seats", "PullMan Seats: £15",
+		"Love-Seats: £25"}));
 		firstPanel.add(cmbSeatType);
 		cmbSeatType.setBounds(93,467,177,20);
 		cmbSeatType.setEnabled(false);
 		
 		// Waiter Service CheckBox & JLabel Heading To Select If They Want
 		lblWaiterService.setFont(new Font("Times New Roman",0,12));
-		lblWaiterService.setText("Waiter Service For Only Â£5.50!");
+		lblWaiterService.setText("Waiter Service For Only £5.50!");
 		lblWaiterService.setBounds(18,505,186,15);
 		firstPanel.add(lblWaiterService);
 
@@ -1074,12 +1074,12 @@ public class FirstPageGui extends JFrame{
 		String adultPrices = Double.toString(movieFile.displayAdultTicket(comboIndex1));
 		String childPrices = Double.toString(movieFile.displayChildTicket(comboIndex1));
 
-		lblActualAdultTicket.setText("Â£" + adultPrices + "0");
-		lblActualChildTicket.setText("Â£" + childPrices + "0");
+		lblActualAdultTicket.setText("£" + adultPrices + "0");
+		lblActualChildTicket.setText("£" + childPrices + "0");
 
 		if (comboIndex1 == 0){
-			lblActualAdultTicket.setText("Â£0.00");
-			lblActualChildTicket.setText("Â£0.00");
+			lblActualAdultTicket.setText("£0.00");
+			lblActualChildTicket.setText("£0.00");
 		}
 	}
 
@@ -1098,7 +1098,7 @@ public class FirstPageGui extends JFrame{
 
 		ticketSubTotal = Double.toString(subTotalTickets);
 
-		lblActualTicketSubTtl.setText("Â£" +ticketSubTotal+"0");
+		lblActualTicketSubTtl.setText("£" +ticketSubTotal+"0");
 
 
 	}
@@ -1175,7 +1175,7 @@ public class FirstPageGui extends JFrame{
 
 		String foodSubTotal = Double.toString(subTotalFood);
 
-		lblActualSDSubTotal.setText("Â£"+foodSubTotal+"0");
+		lblActualSDSubTotal.setText("£"+foodSubTotal+"0");
 
 	}
 
@@ -1205,7 +1205,7 @@ public class FirstPageGui extends JFrame{
 	private void actualTotalPriceActionPerformed(ActionEvent evt){
 		totalToPay = subTotalTickets + subTotalFood+subTotalSeatType+cbWaiterPrice;
 		strTotal = Double.toString(totalToPay);
-		lblActualTotalPrice.setText("Â£"+strTotal+"0"); 
+		lblActualTotalPrice.setText("£"+strTotal+"0"); 
 	}
 
 	// If Card Radio Button Has Been Selected Then Set The Payment Method to Card
@@ -1270,7 +1270,7 @@ public class FirstPageGui extends JFrame{
 
 				// Converts To String After Working Out The Change To Be Presented In A Dialog Box
 				change = Double.toString(changeReturned);
-				JOptionPane.showMessageDialog(null, "Change Returned: Â£"+change+"0");
+				JOptionPane.showMessageDialog(null, "Change Returned: £"+change+"0");
 				btnOrderTickets.setEnabled(true);
 				disableEverythingActionPerformed(evt);
 			// Dialog Box's IF Non-Numerical Values Have Been Entered
@@ -1291,9 +1291,9 @@ public class FirstPageGui extends JFrame{
 		lblActualDateOfShow.setText(movieFile.displayFilmDate(comboIndex1));
 		lblActualMovieTheatre.setText(movieFile.displayTheatreRoom(comboIndex1));
 		lblActualMovieRating.setText("Rated:"+movieFile.displayFilmRating(comboIndex1));
-		lblActualAdultPrice.setText("Â£"+movieFile.displayAdultTicket(comboIndex1)+"0");
+		lblActualAdultPrice.setText("£"+movieFile.displayAdultTicket(comboIndex1)+"0");
 		lblATicketQty.setText("x"+adultQtyIndex);
-		lblActualChildPrice.setText("Â£"+movieFile.displayChildTicket(comboIndex1)+"0");
+		lblActualChildPrice.setText("£"+movieFile.displayChildTicket(comboIndex1)+"0");
 		lblCTicketQty.setText("x"+childQtyIndex);
 		if (snackIndex==0){
 			lblSnackName.setText("No Snacks Purchased With Ticket/s");
@@ -1314,13 +1314,13 @@ public class FirstPageGui extends JFrame{
 		lblActualSeatType.setText((String) cmbSeatType.getSelectedItem());
 		
 		if (cbWaiterService.isSelected()){
-			lblActualWaiterService.setText("Waiter Service: Â£5");
+			lblActualWaiterService.setText("Waiter Service: £5");
 		}else{
 			lblActualWaiterService.setText("Waiter Service: N/a");
 		}
 		
 
-		lblActualTotalPaid.setText("Â£"+strTotal+"0");
+		lblActualTotalPaid.setText("£"+strTotal+"0");
 		int updatedSeats = movieFile.displayNumberOfSeats(comboIndex1) - (adultQtyIndex + childQtyIndex);
 		seats = Integer.toString(updatedSeats);
 
