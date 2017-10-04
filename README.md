@@ -19,11 +19,15 @@ A Graphical User Interface system which allows cinema's to sell their movie tick
 To compile and run this program you will need Java installed.
 
 ``` $ cd Java-Cinema-Checkout-System/Cinema Enterpriso/src/ ```
+
 ``` $ javac Main.java ``` Name of the File
+
 ``` $ java Main ``` Name of the Class
 
 To upload new Film/Snacks/Drinks you will need to modify the *list.text* corresponding to the category of the item being changed. You can find them in the main directory of the folder.
 
 To add a new item, you must do so in the following order:
+
 NameOfFilm; AgeRestriction; AdultPrice; ChildPrice; NumberOfSeats; RoomNo; TimeofShowing; ImageName; DateOfShowing;
+
 *Example: Doctor Strange; 12A; 7.00; 5.00; 150; CW-01-01; 9:00PM; Doctor_Strange.jpg; 22/05/17*
