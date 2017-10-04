@@ -4,14 +4,14 @@ Written by Oluhishi [http://Zonosnetworks.com]
 
 ## Overview
 
-A Graphical User Interface system which allows cinema's to sell their movie tickets, snacks and drinks. This system allows the cinema to view, modify and delete films/snacks/drinks which are no longer showing or seling. 
+A Graphical User Interface system which allows cinemas to sell their movie tickets, snacks and drinks. This system allows the cinema to view, modify and delete films/snacks/drinks which are no longer showing or selling. 
 
 ### The basic requirements for this system are:
           - Provide a set of films for each of the theatres for one week.
           - Provide 1 snack and 1 drink which the customer can buy - display these on screens with the cost.
           - Allow a customer to book one or more tickets in advance / also be able to buy snacks and a drink.
           - Enable the cost of the ticket and any other extras to be paid in cash.
-          - Print a reciept to the screen.
+          - Print a receipt to the screen.
           - Update the screen display to reflect that one or more seats have been booked.
           
 ## Compiling
