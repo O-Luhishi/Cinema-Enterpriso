@@ -34,4 +34,9 @@ NameOfFilm; AgeRestriction; AdultPrice; ChildPrice; NumberOfSeats; RoomNo; Timeo
 
 ## Screenshots
 
-https://user-images.githubusercontent.com/18488979/31190909-70a16a76-a934-11e7-9c94-9b2a032688f8.png
+![alt text](https://user-images.githubusercontent.com/18488979/31190909-70a16a76-a934-11e7-9c94-9b2a032688f8.png)
+![alt text](https://user-images.githubusercontent.com/18488979/31190910-70a230c8-a934-11e7-8678-b086b2ab5fc6.png)
+![alt text](https://user-images.githubusercontent.com/18488979/31190911-70a3710e-a934-11e7-95ba-419a7655e5a2.png)
+![alt text](https://user-images.githubusercontent.com/18488979/31190912-70a76ff2-a934-11e7-8808-cc020f31b6c5.png)
+![alt text](https://user-images.githubusercontent.com/18488979/31190914-70a8094e-a934-11e7-85c0-877027dc927f.png)
+![alt text](https://user-images.githubusercontent.com/18488979/31190913-70a7fa44-a934-11e7-938c-1aac776304de.png)
