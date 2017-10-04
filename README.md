@@ -31,3 +31,7 @@ To add a new item, you must do so in the following order:
 NameOfFilm; AgeRestriction; AdultPrice; ChildPrice; NumberOfSeats; RoomNo; TimeofShowing; ImageName; DateOfShowing;
 
 *Example: Doctor Strange; 12A; 7.00; 5.00; 150; CW-01-01; 9:00PM; Doctor_Strange.jpg; 22/05/17*
+
+## Screenshots
+
+https://user-images.githubusercontent.com/18488979/31190909-70a16a76-a934-11e7-9c94-9b2a032688f8.png
