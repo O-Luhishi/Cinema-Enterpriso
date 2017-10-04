@@ -14,7 +14,7 @@ A Graphical User Interface system which allows cinema's to sell their movie tick
           - Print a reciept to the screen.
           - Update the screen display to reflect that one or more seats have been booked.
           
-## Usage
+## Compiling
 
 To compile and run this program you will need Java installed.
 
@@ -23,6 +23,8 @@ To compile and run this program you will need Java installed.
 ``` $ javac Main.java ``` Name of the File
 
 ``` $ java Main ``` Name of the Class
+
+## Usage
 
 To upload new Film/Snacks/Drinks you will need to modify the *list.text* corresponding to the category of the item being changed. You can find them in the main directory of the folder.
 
